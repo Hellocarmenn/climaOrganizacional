@@ -1,0 +1,320 @@
+<?php header('Content-Type: text/html; charset=UTF-8');?><!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cuestionario NOM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+
+    body {
+        background-image: url("img/fondo.png");
+        color: #747575;
+        font-size: 16px;
+    }
+
+    img {
+        width: 40%;
+    }
+
+    hr {
+        background-color: #28303B;
+        color: #28303B;
+    }
+
+    label {
+        font-size: 16px;
+        color: #747575;
+        line-height: 35px;
+    }
+    span,
+    a {
+        font-size: 16px;
+        color: #747575;
+    }
+
+    li {
+
+        color: #747575;
+    }
+
+    a:hover {
+        color: #DE8343;
+    }
+
+    .dropdown {
+        position: absolute;
+        width: 75%;
+        max-width: 300px;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        padding: 1em;
+        display: grid;
+        align-content: center;
+        gap: 1rem;
+
+        overflow-y: auto;
+
+
+        clip-path: var(--clip, inset(0 0 100% 100%));
+        transition: clip-path .5s;
+    }
+
+    .dropdown__list {
+        list-style: none;
+    }
+
+    .dropdown__link {
+        color: rgb(184, 187, 191);
+        padding: 1em .7em;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+        position: relative;
+        border-radius: 6px;
+    }
+
+    .dropdown__list:has( :checked) {
+        --rows: 1fr;
+        --rotate: rotate(180deg);
+        --bg: #28303B;
+    }
+
+    .dropdown__check {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .dropdown__arrow {
+        margin-left: auto;
+        transform: var(--rotate, 0);
+        transition: .2s transform;
+    }
+
+    .dropdown__content {
+        display: grid;
+        grid-template-rows: var(--rows, 0fr);
+        transition: .3s grid-template-rows;
+    }
+
+    .dropdown__sub {
+        overflow: hidden;
+
+    }
+
+    .dropdown__li {
+        width: 85%;
+        list-style: none;
+        margin-left: auto;
+    }
+
+    .dropdown__anchor {
+        padding: 1em 0;
+        display: block;
+        color: #B6BABE;
+        text-decoration: none;
+    }
+
+    .material-switch>input[type="checkbox"] {
+        display: none;
+    }
+
+    .material-switch>label {
+        cursor: pointer;
+        height: 0px;
+        position: relative;
+        width: 40px;
+    }
+
+    .material-switch>label::before {
+        background: rgb(0, 0, 0);
+        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        content: '';
+        height: 16px;
+        margin-top: -8px;
+        position: absolute;
+        opacity: 0.3;
+        transition: all 0.4s ease-in-out;
+        width: 40px;
+    }
+
+    .material-switch>label::after {
+        background: rgb(255, 255, 255);
+        border-radius: 16px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        content: '';
+        height: 24px;
+        left: -4px;
+        margin-top: -8px;
+        position: absolute;
+        top: -4px;
+        transition: all 0.3s ease-in-out;
+        width: 24px;
+    }
+
+    .material-switch>input[type="checkbox"]:checked+label::before {
+        background: inherit;
+        opacity: 0.5;
+    }
+
+    .material-switch>input[type="checkbox"]:checked+label::after {
+        background: inherit;
+        left: 20px;
+    }
+
+    #global {
+        overflow-y: scroll;
+
+    }
+</style>
+
+<body>
+
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #727473">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img style="width: 8%; margin-right: 10px;" class="img-responsive pull-left" src="img/logo3.png" alt="logo">
+                <ul class="nav navbar-nav navbar-left" style="font-size: 16px;margin-top: 3%;">
+                    <li><a  style="color:white" href="#a1">Inicio</a></li>
+                    <li><a style="color:white" href="#a2">Evaluaiciones</a></li>
+                    <li><a style="color:white" href="#a3">Cuestionario NOM – 035</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    
+
+    <div class="container" style="width:auto;margin-top: 8%;padding: 5px;">
+        <div class="row">
+            <div class="col-sm-3">
+                <div id="global" class="panel-body" style="border-radius:15px;background-color:#F6F6F6;width:100%;height:700px;opacity:90%">
+                    <label>Cuestionario NOm-035</label>
+                    <li class="dropdown__list">
+                        <a href="#" class="dropdown__link">
+                            <span class="dropdown__span">Cuestionarios</span>
+                            <img style="width: 15%;" src="img/5963015.png" class="dropdown__arrow">
+                            <input type="checkbox" class="dropdown__check">
+                        </a>
+                        <div class="dropdown__content">
+                            <ul class="dropdown__sub">
+                                <li class="dropdown__li">
+                                    <a href="#" class="dropdown__anchor">Centros de trabajo que tengan hasta 50 trabajadores</a>
+                                </li>
+                                <li class="dropdown__li">
+                                    <a href="#" class="dropdown__anchor">Centros de trabajo que cuentes con mas de 50 trabajadores</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </li>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="panel-body " style="border-radius:15px;background-color:#F6F6F6;margin-top:.5px;opacity:90%;">
+                    <div class="col-sm-8">
+                        <label>Motivación</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="#" id="marcarTodo">Seleccionar todos</a>
+                        <div class="material-switch pull-right">
+                            <input id="all" name="name=" all" value="all" type="checkbox" />
+                            <label for="all" class="label-primary"></label>
+                        </div>
+                    </div>
+                </div>
+                <br></br>
+                <div class="col-sm-12">
+                    <form name="f1" id="formElement">
+                        <div class="panel-body" style="border-radius:15px;background-color:#F6F6F6;opacity:90%;height:600px"">
+                            <div>
+                                <label>Considero que recibo un justo reconocimiento de mi labor de parte de mis compañeros y jefes.</label>
+                                <div class=" material-switch pull-right">
+                            <input id="someSwitchOptionPrimary" name="someSwitchOption001" type="checkbox" />
+                            <label for="someSwitchOptionPrimary" class="label-primary"></label>
+                        </div>
+                        <hr style="color:#838484;">
+                        </hr>
+                        <br>
+                </div>
+
+                <div>
+                    <label>Alguien en el trabajo se preocupa por mí como persona.</label>
+                    <div class="material-switch pull-right">
+                        <input id="someSwitchOptionPrimary" name="someSwitchOption001" type="checkbox" />
+                        <label for="someSwitchOptionPrimary" class="label-primary"></label>
+                    </div>
+                    <hr style="color:#838484;">
+                    </hr>
+                    <br>
+                </div>
+
+                <label>En el trabajo, mis opiniones cuentan.</label>
+                <div class="material-switch pull-right">
+                    <input id="someSwitchOptionPrimary" name="someSwitchOption001" type="checkbox" />
+                    <label for="someSwitchOptionPrimary" class="label-primary"></label>
+                </div>
+                <hr style="color:#838484;">
+                </hr>
+                <br>
+                <label>Me siento comprometido para alcanzar las metas establecidas.</label>
+                <div class="material-switch pull-right">
+                    <input id="someSwitchOptionPrimary" name="someSwitchOption001" type="checkbox" />
+                    <label for="someSwitchOptionPrimary" class="label-primary"></label>
+                </div>
+                <hr style="color:#838484;">
+                </hr>
+                <br>
+                <label>Estoy satisfecho con la frecuencia con la que recibo reconocimiento.</label>
+                <div class="material-switch pull-right">
+                    <input id="someSwitchOptionPrimary" name="someSwitchOption001" type="checkbox" />
+                    <label for="someSwitchOptionPrimary" class="label-primary"></label>
+                </div>
+                <br></br>
+                <br></br>
+                <div align="right">
+                    <button style="border-radius: 10px;background:white;border-color:white;color:green;font-size:18px">Cancelar</button>
+                    <button style="border-radius: 10px;background:white;border-color:white;color:#DE8343;font-size:18px">Guardar</button>
+                </div>
+            </div>
+
+            </form>
+        </div>
+    </div>
+    </div>
+    <script>
+        const all = document.getElementById('all');
+
+        all.addEventListener('click', toggle);
+
+
+        function toggle() {
+            const isChecked = all.checked;
+            Array.from(document.f1.getElementsByTagName('input')).forEach(element => {
+                element.checked = isChecked;
+            });
+        }
+
+
+        Array.from(document.f1.querySelectorAll('input:not(#all)')).forEach(element => {
+            element.addEventListener('click', uncheckAll);
+        });
+
+        function uncheckAll() {
+            all.checked = false
+        }
+    </script>
+</body>
+
+</html>

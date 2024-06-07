@@ -1,0 +1,113 @@
+<?php header('Content-Type: text/html; charset=UTF-8'); ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cuestionario NOM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100&display=swap');
+
+    body {
+        background-image: url("img/fondo.png");
+        font-family: 'PT Sans', sans-serif;
+        font-weight: lighter;
+    }
+
+    label {
+        font-size: 16px;
+        font-family: 'PT Sans', sans-serif;
+        color: #838484;
+        font-weight: bold;
+    }
+
+    li {
+
+        color: #838484;
+    }
+
+    a {
+
+        color: #838484;
+        font-weight: bold;
+        font-family: 'PT Sans', sans-serif;
+        font-size: 16px;
+    }
+
+    a:hover {
+        color: #DE8343;
+    }
+</style>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #727473">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img style="width: 10%; margin-right: 10px;" class="img-responsive pull-left" src="img/logo3.png" alt="logo">
+                <ul class="nav navbar-nav navbar-left" style="font-size: 16px;margin-top: 3%;">
+                    <li><a style="color:white" href="#a3">Evaluaciones</a></li>
+                    <li><a style="color:white" href="#a3">Cuestionario NOM-35</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="width:auto;margin-top: 8%;>
+        <div class="row" style="margin-top:-2%;">
+            <div class="col-sm-3">
+                <div class="panel-body" style="border-radius:15px;background-color:#F6F6F6;opacity:90%;height:700px">
+                    <div align="center">
+                        <label>Elige el tipo de evaluación</label>
+                    </div>
+                    <br>
+                    <br>
+                    <label><a style="font-family: 'PT Sans', sans-serif;" href="evaluacionClima.php">Encuesta de clima laboral</a></label>
+                    <label><a style="font-family: 'PT Sans', sans-serif;" href="#">Cuestionario NOM – 035 (Factores de Riesgos Psicosociales)</a></label>
+                </div>
+
+            </div>
+            <div class="col-sm-6">
+                <div class="panel-body" style="border-radius:15px;background-color:#F6F6F6;opacity:90%;height:700px">
+                    <label style=" line-height: 25px;font-size:16px;color:gray">
+                        La NOM-035-STPS-2018, también conocida como "Factores de riesgo psicosocial en el trabajo-Identificación, análisis y prevención", es una normativa emitida por la Secretaría del Trabajo y Previsión Social (STPS) en México. Esta norma tiene como objetivo establecer los lineamientos para identificar, analizar y prevenir los factores de riesgo psicosocial en el entorno laboral, con el fin de promover un ambiente de trabajo favorable para la salud mental de los empleados.<br>
+                        <br>
+                        Uno de los aspectos clave de la NOM-035 es la implementación de cuestionarios para evaluar los factores de riesgo psicosocial en el trabajo. Estos cuestionarios son herramientas diseñadas para recopilar información sobre diversos aspectos que pueden tener un impacto en la salud mental y emocional de los trabajadores.<br>
+                        <br>
+                        La norma establece que las empresas deben llevar a cabo una evaluación inicial de los factores de riesgo psicosocial en su lugar de trabajo y, en función de los resultados obtenidos, implementar medidas de prevención y control para abordar los problemas identificados.<br>
+                        <br>
+                        Los cuestionarios son una parte fundamental de este proceso de evaluación, ya que proporcionan información cuantitativa y cualitativa sobre el estado del ambiente psicosocial en la organización.<br>
+                        <br>
+                        Es importante mencionar que la implementación de la NOM-035 es obligatoria para todas las empresas en México, independientemente de su tamaño o industria. Las organizaciones deben cumplir con los requisitos de la norma para asegurar un entorno laboral saludable y prevenir riesgos psicosociales que puedan afectar la salud mental de los trabajadores.
+                        <br>
+                    </label>
+                </div>
+
+            </div>
+            <div class="col-sm-3">
+                <div class="panel-body" style="border-radius:5px;background-color:#F6F6F6;height:700px;opacity:90%">
+                    <button class="button" onClick="window.location.href='factoresnom035.php'"><strong>Configurar cuestionario</strong></button>
+                    <br><br>
+                    <br>
+                    <label>Importar base de empleados:</label>
+                    <a href="plantilla.xlsx" download>Descargar plantilla</a>
+                    <br><br>
+                    <form action="read3.php" enctype="multipart/form-data" method="post">
+                        <input class="button" type="file" name="filed1"><br>
+                        <input class="button" type="submit" value="Cargar base">
+                    </form>
+                    <br><br>
+                    <button class="button" onClick="window.location.href='mail.php'"><strong>Enviar correos</strong></button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<?php header('Content-Type: text/html; charset=UTF-8');?><!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Clima Organizacional</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+    body {
+        background-image: url("img/fondo.png");
+        font-family: 'PT Sans', sans-serif;
+        font-weight: lighter;
+    }
+
+    label {
+        font-size: 16px;
+        font-family: 'PT Sans', sans-serif;
+        color: #838484;
+    }
+
+    li {
+
+        color: #838484;
+    }
+
+    a {
+
+        color: #838484;
+        font-size: 16px;
+        font-family: 'PT Sans', sans-serif;
+        list-style-type: none;
+    }
+
+    a:hover {
+        color: #DE8343;
+    }
+    button {
+        border-radius: 5px;
+        width: auto;
+        font-size: 18px;
+        background-color: white;
+        border: 3px solid #E3E3E3;
+    }
+</style>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #727473">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img style="width: 8%; margin-right: 10px;" class="img-responsive pull-left" src="img/logo3.png" alt="logo">
+                <ul class="nav navbar-nav navbar-left" style="font-size: 16px;margin-top: 3%;">
+                    <li><a  style="color:white" href="#a1">Inicio</a></li>
+                    <li><a style="color:white" href="#a2">Evaluaiciones</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="width:auto;margin-top:10%">
+        <div class="row" style="margin-top:-2%;">
+            <div class="col-sm-3">
+                <div class="panel-body" style="border-radius:15px;background-color:#F6F6F6;height:700px;opacity:90%">
+                    <div align="center">
+                        <label style="align-content: center;">Elige el tipo de evaluación</label>
+
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <label><a style="font-family: 'PT Sans', sans-serif;" class="active" href="evaluacionClima.php">Encuesta de clima laboral</a></label>
+                    <br></br>
+                    <label><a style="font-family: 'PT Sans', sans-serif;" href="cuesNOM.php">Cuestionario NOM – 035
+                            (Factores de Riesgos Psicosociales)</a></label>
+                </div>
+
+            </div>
+            <div class="col-sm-6">
+                <div class="panel-body" style="border-radius:15px;background-color:#F6F6F6;height:700px;opacity:90%">
+                </div>
+
+            </div>
+            <div class="col-sm-3">
+                <div class="panel-body" style="border-radius:5px;background-color:#F6F6F6;height:700px;opacity:90%">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,460 @@
+<?php header('Content-Type: text/html; charset=UTF-8'); ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Clima Organizacional</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100&display=swap');
+
+    body {
+        background-image: url("img/fondo.png");
+        font-family: 'PT Sans', sans-serif;
+        font-weight: lighter;
+    }
+
+    img {
+        width: 40%;
+    }
+
+    hr {
+        background-color: #727373;
+        color: #727373;
+        height: 1px;
+        width: 100%;
+    }
+
+    label {
+        font-size: 16px;
+        font-family: 'PT Sans', sans-serif;
+        color: #838484;
+        font-weight: bold;
+    }
+
+
+
+    a,
+    ul,
+    li {
+        color: #838484;
+        font-size: 16px;
+        font-family: 'PT Sans', sans-serif;
+        list-style-type: none;
+    }
+
+    a:hover {
+        color: #DE8343;
+    }
+
+    span {
+        font-family: 'Barlow', sans-serif;
+        font-size: 16px;
+        color: #747575;
+    }
+
+
+    .dropdown {
+        position: absolute;
+        width: 75%;
+        max-width: 300px;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        padding: 1em;
+        display: grid;
+        align-content: center;
+        gap: 1rem;
+
+        overflow-y: auto;
+
+
+        clip-path: var(--clip, inset(0 0 100% 100%));
+        transition: clip-path .5s;
+    }
+
+    .dropdown__list {
+        list-style: none;
+    }
+
+    .dropdown__link {
+        color: rgb(184, 187, 191);
+        padding: 1em .7em;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+        position: relative;
+        border-radius: 6px;
+    }
+
+    .dropdown__list:has( :checked) {
+        --rows: 1fr;
+        --rotate: rotate(180deg);
+        --bg: #28303B;
+    }
+
+    .dropdown__check {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .dropdown__arrow {
+        margin-left: auto;
+        transform: var(--rotate, 0);
+        transition: .2s transform;
+    }
+
+    .dropdown__content {
+        display: grid;
+        grid-template-rows: var(--rows, 0fr);
+        transition: .3s grid-template-rows;
+    }
+
+    .dropdown__sub {
+        overflow: hidden;
+
+    }
+
+    .dropdown__li {
+        width: 85%;
+        list-style: none;
+        margin-left: auto;
+    }
+
+    .dropdown__anchor {
+        padding: 1em 0;
+        display: block;
+        color: #B6BABE;
+        text-decoration: none;
+    }
+
+    input[role=switch] {
+        appearance: none;
+        -webkit-appearance: none;
+        position: relative;
+        display: inline-block;
+        width: 2.4em;
+        height: 1.4em;
+        margin: -.2em 0;
+        box-sizing: content-box;
+        padding: 0;
+        border: none;
+        border-radius: .7em;
+        background: rgba(160, 160, 160, 0.7);
+        box-shadow: 0 .15em .25em rgba(0, 0, 0, 0.5) inset, 0 -.5px 0 rgba(255, 255, 255, 0.2) inset;
+        transition: background-color 250ms ease, box-shadow 250ms ease;
+        font-size: 100%;
+        text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        user-select: none;
+        outline: none;
+    }
+
+    input[role=switch]::before {
+        content: '';
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        position: absolute;
+        width: 1em;
+        height: 1em;
+        left: 0;
+        top: 0;
+        background: rgba(240, 240, 240, 0.9);
+        box-shadow: 0 1px 1px #fff inset, 0 .2em .5em rgba(255, 255, 255, 0.7) inset, 0 -.2em .3em rgba(0, 0, 0, 0.2) inset, 0 .05em .25em rgba(0, 0, 0, 0.7);
+        border-radius: 50%;
+        transform: translate(20%, 20%);
+        transition: transform 250ms ease;
+        color: rgba(0, 0, 0, 0.3);
+        line-height: 1;
+    }
+
+    input[role=switch]:focus::before {
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+    input[role=switch]:checked {
+        background-color: var(--bg-checked, var(--bg, rgb(60, 130, 250)));
+    }
+
+    input[role=switch]:focus-visible {
+        box-shadow: 0 .15em .25em rgba(0, 0, 0, 0.5) inset, 0 -.5px 0 rgba(255, 255, 255, 0.2) inset, 0 0 0 2px rgba(255, 255, 255, 0.8), 0 0 0 4px var(--bg-checked, var(--bg, rgb(60, 130, 250)));
+    }
+
+    input[role=switch]:checked::before {
+        transform: translate(120%, 20%);
+    }
+
+    input[role=switch]:indeterminate::before {
+        transform: translate(70%, 20%);
+        content: '-';
+    }
+
+    input[role=switch]:disabled:before {
+        opacity: 0.4;
+    }
+
+    #global {
+        overflow-y: scroll;
+    }
+</style>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #727473">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img style="width: 8%; margin-right: 10px;" class="img-responsive pull-left" src="img/logo3.png" alt="logo">
+                <ul class="nav navbar-nav navbar-left" style="font-size: 16px;margin-top: 3%;">
+                    <li><a  style="color:white" href="#a1">Inicio</a></li>
+                    <li><a style="color:white" href="#a2">Evaluaiciones</a></li>
+                    <li><a style="color:white" href="#a3">Encuesta de clima laboral</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container-fluid">
+        <nav class="navbar" style="background-color: #fafafa;color:#838484">
+            <div class="navbar-header">
+                <img style="width:50% ;" class="img-responsive" src="img/logo2.png" alt="logo">
+            </div>
+            <ul class="nav navbar-nav">
+                <li style="font-size: 16px;color:#838484"><a style="color:#717272" href="evaluacion0.php">Inicio</a></li>
+                <li style="font-size: 16px;color:#838484"><a style="color:#717272" href="evaluacion0.php">Evaluaciones</a></li>
+                <li style="font-size: 16px;color:#838484"><a style="color:#717272" href="#">Encuesta de clima laboral</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="container" style="width:auto;margin-top: 3%;">
+        <div class="row">
+            <div class="col-sm-3">
+                <div id="global" class="panel-body" style="border-radius:5px;background-color:#F6F6F6;width:100%;height:700px;opacity:90%;">
+                    <label>Factores</label>
+                    <li class="dropdown__list">
+                        <a href="#" class="dropdown__link">
+                            <span class="dropdown__span">Personales</span>
+                            <img style="width: 8%;" src="img/5963015.png" class="dropdown__arrow">
+                            <input type="checkbox" class="dropdown__check">
+                        </a>
+                        <div class="dropdown__content">
+                            <ul class="dropdown__sub">
+
+                                <li class="dropdown__li">
+                                    <a href="factores.php?f=factores personales&d=Autonomía" class="dropdown__anchor">Autonomía</a>
+                                </li>
+                                <li class="dropdown__li">
+                                    <a href="factores.php?f=factores personales&d=Identidad" class="dropdown__anchor">Identidad</a>
+                                </li>
+                                <li class="dropdown__li">
+                                    <a href="factores.php?f=factores personales&d=Motivación" class="dropdown__anchor">Motivación</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </li>
+
+                    <li class="dropdown__list">
+                        <a href="#" class="dropdown__link">
+                            <span class="dropdown__span">Grupales</span>
+                            <img style="width: 8%;" src="img/5963015.png" class="dropdown__arrow">
+                            <input type="checkbox" class="dropdown__check">
+                        </a>
+
+                        <div class="dropdown__content">
+
+                            <ul class="dropdown__sub">
+
+                                <li class="dropdown__li">
+                                    <a href="factores.php?f=factores grupales&d=Trabajo en equipo" class="dropdown__anchor">Trabajo en equipo</a>
+                                </li>
+                                <li class="dropdown__li">
+                                    <a href="factores.php?f=factores grupales&d=Apoyo" class="dropdown__anchor">Apoyo</a>
+                                </li>
+                                <li class="dropdown__li">
+                                    <a href="factores.php?f=factores grupales&d=Respeto" class="dropdown__anchor">Respeto</a>
+                                </li>
+                                <li class="dropdown__li">
+                                    <a href="factores.php?f=factores grupales&d=Percepción de la organización" class="dropdown__anchor">Percepción de la organización</a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </li>
+
+                    <li class="dropdown__list">
+                        <a href="#" class="dropdown__link">
+                            <span class="dropdown__span">Organizacionales objetivos</span>
+                            <img style="width: 8%;" src="img/5963015.png" class="dropdown__arrow">
+                            <input type="checkbox" class="dropdown__check">
+                        </a>
+
+                        <div class="dropdown__content">
+
+
+                            <ul class="dropdown__sub">
+
+                                <li class="dropdown__li">
+                                    <a href="factores.php?f=factores organizacionales objetivos&d=Estructura" class="dropdown__anchor">Estructura</a>
+                                </li>
+                                <li class="dropdown__li">
+                                    <a href="factores.php?f=factores organizacionales objetivos&d=Comunicación" class="dropdown__anchor">Comunicación</a>
+                                </li>
+                                <li class="dropdown__li">
+                                    <a href="factores.php?f=factores organizacionales objetivos&d=Condiciones de trabajo" class="dropdown__anchor">Condiciones de trabajo</a>
+                                </li>
+                                <li class="dropdown__li">
+                                    <a href="factores.php?f=factores organizacionales objetivos&d=Innovación" class="dropdown__anchor">Innovación</a>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                    </li>
+
+                    <li class="dropdown__list">
+                        <a href="#" class="dropdown__link">
+                            <span class="dropdown__span">Organizacionales subjetivos</span>
+                            <img style="width: 8%;" src="img/5963015.png" class="dropdown__arrow">
+                            <input type="checkbox" class="dropdown__check">
+                        </a>
+
+                        <div class="dropdown__content">
+
+                            <ul class="dropdown__sub">
+
+                                <li class="dropdown__li">
+                                    <a href="factores.php?f=factores organizacionales subjetivos&d=Reconocimiento" class="dropdown__anchor">Reconocimiento</a>
+                                </li>
+                                <li class="dropdown__li">
+                                    <a href="factores.php?f=factores organizacionales subjetivos&d=Sueldo" class="dropdown__anchor">Sueldo</a>
+                                </li>
+                                <li class="dropdown__li">
+                                    <a href="factores.php?f=factores organizacionales subjetivos&d=Capacitación" class="dropdown__anchor">Capacitación</a>
+                                </li>
+                                <li class="dropdown__li">
+                                    <a href="factores.php?f=factores organizacionales subjetivos&d=Promoción y carrera" class="dropdown__anchor">Promoción y carrera</a>
+                                </li>
+                                <li class="dropdown__li">
+                                    <a href="factores.php?f=factores organizacionales subjetivos&d=Equidad / Diversidad / Inclusión" class="dropdown__anchor">Equidad / Diversidad / Inclusión</a>
+                                </li>
+                                <li class="dropdown__li">
+                                    <a href="factores.php?f=factores organizacionales subjetivos&d=Presión" class="dropdown__anchor">Presión</a>
+                                </li>
+                                <li class="dropdown__li">
+                                    <a href="factores.php?f=factores organizacionales subjetivos&d=Liderazgo" class="dropdown__anchor">Liderazgo</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </div>
+            </div>
+            <?php if ($_GET["f"] <> "") { ?>
+                <div class="col-sm-9">
+                    <div class="panel-body " style="border-radius:15px;background-color:#F6F6F6;opacity:90%;width:100%;height:50px">
+
+                        <div class="col-sm-8">
+                            <label><?php echo $_GET["d"] ?></label>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="#" id="marcarTodo">Seleccionar todos</a>
+                            <input onClick="setAllCheckboxes('actors', this);" type="checkbox" class="pull-right" role="switch" />
+                            <label for="all" class="label-primary"></label>
+                        </div>
+                    </div>
+                    <div id="actors">
+                        <div class="col-sm-12" style="margin-top: 4px;">
+                            <div class="panel-body" style="border-radius:15px;background-color:#F6F6F6;opacity:90%;height:645px">
+
+                                <form method="post" action="guardarpreg2.php">
+
+                                    <?php
+                                    $con = mysql_connect("mundoprogresivocom.powwebmysql.com", "ce_clima", "Asdfg@12345");
+                                    mysql_select_db("climaorganizacional", $con) or die("No se puede conectar");
+                                    mysql_query("set names utf8");
+
+                                    $query = "select * from clima where factor='" . $_GET["f"] . "' and dimension='" . $_GET["d"] . "'";
+                                    $result = mysql_query($query);
+                                    while ($row = mysql_fetch_array($result)) {
+                                    ?>
+
+
+                                        <div>
+                                            <label><?php echo $row["Enunciado"] ?></label>
+                                            <input name="someSwitchOptionPrimary1[]" type="checkbox" class="pull-right" role="switch" value="<?php echo $row["id"] ?>" />
+                                            <label for="someSwitchOptionPrimary1[]" class="label-primary"></label>
+                                            <hr style="color:#838484;">
+                                            </hr>
+                                            <br></br>
+                                        </div>
+
+                                    <?php } ?>
+
+                                    <div align="right">
+                                        <input type="submit" value="Guardar" style="border-radius: 7px;background:white;border-color:white;color:#9FCE63;font-size:16px">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } else { ?>
+
+                <div class="col-sm-9">
+                    <div class="panel-body " style="border-radius:15px;background-color:#F6F6F6;opacity:90%;width:100%;height:80vh">
+
+                        <div class="table table-responsive">
+                            <table class="table table-striped table-condensed table-bordered">
+                                <tr>
+                                    <td><strong>Factor</strong></td>
+                                    <td><strong>Dimensión</strong></td>
+                                    <td><strong>Enunciado</strong></td>
+                                </tr>
+                                <?php
+                                $con = mysql_connect("mundoprogresivocom.powwebmysql.com", "ce_clima", "Asdfg@12345");
+                                mysql_select_db("climaorganizacional", $con) or die("No se puede conectar");
+                                mysql_query("set names utf8");
+
+                                $query = "select * from clima2 order by id";
+                                $result = mysql_query($query);
+                                while ($row = mysql_fetch_array($result)) {
+                                ?>
+                                    <tr>
+                                        <td><?php echo $row["Factor"] ?></td>
+                                        <td><?php echo $row["Dimension"] ?></td>
+                                        <td><?php echo $row["Enunciado"] ?></td>
+                                    </tr>
+                                <?php } ?>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            <?php } ?>
+        </div>
+    </div>
+    <script>
+        function setAllCheckboxes(divId, sourceCheckbox) {
+            divElement = document.getElementById(divId);
+            inputElements = divElement.getElementsByTagName('input');
+            for (i = 0; i < inputElements.length; i++) {
+                if (inputElements[i].type != 'checkbox')
+                    continue;
+                inputElements[i].checked = sourceCheckbox.checked;
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,657 @@
+<?php header('Content-Type: text/html; charset=UTF-8');?><!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cuestionario NOM1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+
+    body {
+        background-image: url("img/fondo.png");
+        color: #747575;
+
+    }
+
+    #global {
+        height: 680px;
+        border: 1px solid #ddd;
+        background: #f1f1f1;
+        opacity: 90%;
+        overflow-y: scroll;
+        width: auto;
+    }
+
+    img {
+        width: 40%;
+    }
+
+    label,
+    p {
+        font-weight: bold;
+        color: #838484;
+        font-size: 16px;
+        font-weight: lighter;
+        font-family: 'PT Sans', sans-serif;
+        list-style-type: none;
+        line-height: 30px;
+
+    }
+
+
+    a,
+    ul,
+    li {
+        font-weight: bold;
+        color: #838484;
+        font-size: 16px;
+        font-weight: lighter;
+        font-family: 'PT Sans', sans-serif;
+        list-style-type: none;
+
+
+    }
+
+    a:hover {
+        color: #DE8343;
+    }
+
+    .form-select {
+        background-color: #F2F2F2;
+        color: gray;
+        width: 100%;
+        border-radius: 2px;
+        border-color: #D9D9D9;
+        font-size: 16px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    select {
+        border-radius: 5px;
+        font-size: 8px;
+        height: 20px;
+    }
+</style>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #727473">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img style="width: 8%; margin-right: 10px;" class="img-responsive pull-left" src="img/logo3.png" alt="logo">
+                <ul class="nav navbar-nav navbar-left" style="font-size: 16px;margin-top: 3%;">
+                    <li><a style="color:white" href="#a3">Cuestionario NOM – 035</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="width:auto;margin-top: 7%;padding: 10px;">
+        <div class="row">
+            <div class="col-sm-3">
+                <div id="global">
+                    <div class="panel-body" style="border-radius:15px;background-color:#F6F6F6;width:auto;height:auto;opacity: 90%;height:680px">
+                        <p>Categoría/Dominio/Dimensión</p>
+                        <br></br>
+                        <p>Ambiente de trabajo</p>
+                        <ul>
+                            <li>
+                                Condiciones en el ambiente de trabajo
+                            </li>
+                            <ul>
+                                <li><a>Condiciones peligrosas e inseguras</a></li>
+                                <li><a>Condiciones deficientes e insalubres</a></li>
+                                <li><a>Trabajos peligrosos</a></li>
+                            </ul>
+                        </ul>
+
+                        <p>Factores propios de la actividad</p>
+                        <ul>
+                            <li>
+                                Carga de trabajo
+                            </li>
+                            <ul>
+                                <li><a>Cargas cuantitativas</a></li>
+                                <li><a>Ritmos de trabajo acelerado</a></li>
+                                <li><a>Carga mental</a></li>
+                                <li><a>Cargas psicológicas emocionales</a></li>
+                                <li><a>Cargas de alta responsabilidad</a></li>
+                                <li><a>Cargas contradictorias o inconsistentes</a></li>
+                            </ul>
+                            <li>
+                                Falta de control sobre el trabajo
+                            </li>
+                            <ul>
+                                <li><a>Falta de control y autonomía sobre el trabajo</a></li>
+                                <li><a>Limitada o nula posibilidad de desarrollo</a></li>
+                                <li><a>Insuficiente participación y manejo del cambio</a></li>
+                                <li><a>Limitada o inexistente capacitación</a></li>
+                            </ul>
+
+                        </ul>
+
+                        <label>Organización del tiempo de trabajo</label>
+                        <ul>
+                            <li>
+                                Jornada de trabajo
+                            </li>
+                            <ul>
+                                <li><a>Jornadas de trabajo extensas</a></li>
+                            </ul>
+                            <li>
+                                Interferencia en la relación trabajo-familia
+                            </li>
+                            <ul>
+                                <li><a>Influencia del trabajo fuera del centro laboral</a></li>
+                                <li><a>Influencia de las responsabilidades familiares</a></li>
+                            </ul>
+                        </ul>
+
+                        <label>Liderazgo y relaciones en el trabajo</label>
+                        <ul>
+                            <li>
+                                Liderazgo
+                            </li>
+                            <ul>
+                                <li><a>Escaza claridad de funciones</a></li>
+                                <li><a>Características del liderazgo</a></li>
+                            </ul>
+                            <li>
+                                Relaciones en el trabajo
+                            </li>
+                            <ul>
+                                <li><a>Relaciones sociales en el trabajo</a></li>
+                                <li><a>Deficiente relación con los colaboradores que supervisa</a></li>
+                            </ul>
+                            <li>
+                                Violencia
+                            </li>
+                            <ul>
+                                <li><a>Violencia laboral</a></li>
+                            </ul>
+                        </ul>
+
+                        <label>Entorno organizacional</label>
+                        <ul>
+                            <li>
+                                Reconocimiento del desempeño
+                            </li>
+                            <ul>
+                                <li><a>Escasa o nula retroalimentación del desempeño</a></li>
+                                <li><a>Escaso o nulo reconocimiento y compensación</a></li>
+                            </ul>
+                            <li>
+                                Insuficiente sentido de pertenencia e, inestabilidad
+                            </li>
+                            <ul>
+                                <li><a>Limitado sentido de pertenencia</a></li>
+                                <li><a>Inestabilidad laboral</a></li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-9">
+                <div id="global">
+                    <br>
+                    <div class="panel-body" style="border-radius:15px;background-color:white;margin-top:2px;width:auto;margin-left:1.0%;font-size:12px">
+                        <div class="col-sm-12"><label style="font-size: 12px;">Cuestionario para identificar los factores de riesgo psicosocial y evaluar el entorno organizacional en los centros de trabajo.</label></div>
+                        <div class="col-sm-6">
+                            <p style="font-size: 12px;" align="left">Lee cuidadosamente cada pregunta antes de respobnder</p>
+                            <p style="font-size: 12px;" align="left">Asegúrate de entender completamente lo que se está preguntando.</p>
+                            <p style="font-size: 12px;" align="left">Selecciona la respuesta que mejor refleje tu opinión o experiencia.</p>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div align="center" class="col-sm-4">
+                                <p style="font-size: 12px;">Tiempo promedio</p>
+                                <p style="font-size: 12px;">30min</p>
+                                <hr>
+                                </hr>
+                                <p style="font-size: 12px;">No.de reactivos</p>
+                                <p style="font-size: 12px;">90</p>
+                            </div>
+
+                            <div align="center" class="col-sm-4">
+                                <p style="font-size: 12px;"> Tipo</p>
+                                <p style="font-size: 12px;">Anónima</p>
+                                <hr>
+                                </hr>
+                                <p style="font-size: 12px;">Fecha limite</p>
+                                <p style="font-size: 12px;">15/09/2023</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <button style="border-radius: 25px;color:#DE8343;background-color:white;  border: .5px solid white;box-shadow: 10px 4px 4px gray;font-size:8px">En proceso</button>
+                                <br></br>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br></br>
+                    <div class="col-sm-12">
+                        <div class="col-sm-10">
+                            <label style="font-weight: bold;font-family:Arial, Helvetica, sans-serif">Para responder las preguntas siguientes considere las condiciones ambientales de su centro de trabajo.</label>
+                        </div>
+                        <div class="col-sm-10">
+                            <p>1 El espacio donde trabajo me permite realizar mis actividades de manera segura e higiénica.</p>
+                        </div>
+                        <div class="col-sm-2">
+                            <button aling="right" style="background-color: #D65A33;color:white;border-color:#E47A38;border-radius:5px;font-size:7px">Condiciones en el <br>ambiente de trabajo</button>
+                        </div>
+
+                        <div class="col-sm-10">
+                            <p>2 Mi trabajo me exige hacer mucho esfuerzo físico.</p>
+                        </div>
+                        <div class="col-sm-2">
+                            <button aling="right" style="background-color: #D65A33;color:white;border-color:#E47A38;border-radius:5px;font-size:7px">Condiciones en el <br>ambiente de trabajo</button>
+                        </div>
+                        <div class="col-sm-10">
+                            <p>3 Por la cantidad de trabajo que tengo debo quedarme tiempo adicional a mi turno.</p>
+                        </div>
+                        <div class="col-sm-2">
+                            <button aling="right" style="background-color: #D65A33;color:white;border-color:#E47A38;border-radius:5px;font-size:7px">Condiciones en el <br>ambiente de trabajo</button>
+                        </div>
+                        <div class="col-sm-10">
+                            <p>4 Por la cantidad de trabajo que tengo debo trabajar sin parar.</p>
+                        </div>
+                        <div class="col-sm-2">
+                            <button aling="right" style="background-color: #D65A33;color:white;border-color:#E47A38;border-radius:5px;font-size:7px">Condiciones en el <br>ambiente de trabajo</button>
+                        </div>
+                        <div class="col-sm-10">
+                            <p>5 Mi trabajo me exige hacer mucho esfuerzo físico.</p>
+                        </div>
+                        <div class="col-sm-2">
+                            <button aling="right" style="background-color: #D65A33;color:white;border-color:#E47A38;border-radius:5px;font-size:7px">Condiciones en el <br>ambiente de trabajo</button>
+                        </div>
+                        <div class="col-sm-10">
+                            <p>6 Me preocupa sufrir un accidente en mi trabajo.</p>
+                        </div>
+                        <div class="col-sm-2">
+                            <button aling="right" style="background-color: #D65A33;color:white;border-color:#E47A38;border-radius:5px;font-size:7px">Condiciones en el <br>ambiente de trabajo</button>
+                        </div>
+                        <div class="col-sm-10">
+                            <p>7 Considero que es necesario mantener un ritmo de trabajo acelerado.</p>
+                        </div>
+                        <div class="col-sm-2">
+                            <button aling="right" style="background-color: #D65A33;color:white;border-color:#E47A38;border-radius:5px;font-size:7px">Condiciones en el <br>ambiente de trabajo</button>
+                        </div>
+                        <div class="col-sm-10">
+                            <p>8 Mi trabajo exige que esté muy concentrado.</p>
+                        </div>
+
+
+
+
+
+
+                        <br></br>
+                        <div class="col-sm-12">
+                            <div class='progress_inner'>
+                                <div class='progress_inner__step'>
+                                    <label style="font-size: 10px;" for='step-1'>Totalmente en desacuerdo</label>
+                                </div>
+                                <div class='progress_inner__step'>
+                                    <label for='step-2'></label>
+                                </div>
+                                <div class='progress_inner__step'>
+                                    <label for='step-3'></label>
+                                </div>
+                                <div class='progress_inner__step'>
+                                    <label for='step-4'></label>
+                                </div>
+                                <div class='progress_inner__step'>
+                                    <label style="font-size: 10px;" for='step-5'>Totalmente de acuerdo</label>
+                                </div>
+                                <input checked='checked' id='step-1' name='step' type='radio'>
+                                <input id='step-2' name='step' type='radio'>
+                                <input id='step-3' name='step' type='radio'>
+                                <input id='step-4' name='step' type='radio'>
+                                <input id='step-5' name='step' type='radio'>
+                                <div class='progress_inner__bar'></div>
+                                <div class='progress_inner__bar--set'></div>
+                                <div class='progress_inner__tabs'>
+                                    <div class='tab tab-0'>
+                                        <p>1.- Totalmente en desacuerdo</p>
+                                    </div>
+                                    <div class='tab tab-1'>
+                                        <p>2,- En desacuerdo</p>
+                                    </div>
+                                    <div class='tab tab-2'>
+                                        <p>3,- Ni de acuerdo ni en desacuerdo</p>
+                                    </div>
+                                    <div class='tab tab-3'>
+                                        <p>4,- De acuerdo</p>
+                                    </div>
+                                    <div class='tab tab-4'>
+                                        <p>5.- Totalmente de acuerdo</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div>
+                            <div class="col-sm-10">
+                                <p>Alguien en el trabajo se preocupa por mí como persona.</p>
+                            </div>
+                            <div class="col-sm-2">
+                                <button aling="right" style="background-color: #E47A38;color:white;border-color:#E47A38;border-radius:5px">Motivación</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-sm-10">
+                                <p>Mis compañeros y yo trabajamos juntos y tenemos una buena relación.</p>
+                            </div>
+                            <div class="col-sm-2">
+                                <button aling="right" style="background-color: #262967;color:white;border-color:#262967;border-radius:5px">Trabajo en equipo</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-sm-10">
+                                <p>Recibo información con regularidad que me permite conocer lo que sucede en la empresa.</p>
+                            </div>
+                            <div class="col-sm-2">
+                                <button aling="right" style="background-color: #2A6398;color:white;border-color:#2A6398;border-radius:5px">Comunicación</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-sm-10">
+                                <p>Siento que mi jefe actúa en pro de motivar al equipo de trabajo.</p>
+                            </div>
+                            <div class="col-sm-2">
+                                <button aling="right" style="background-color: #A6C751;color:white;border-color:#A6C751;border-radius:5px">Liderazgo</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-sm-10">
+                                <p> Puedo cumplir con mi trabajo de la manera que yo considere mejor.</p>
+                            </div>
+                            <div class="col-sm-2">
+                                <button aling="right" style="background-color: #E47A38;color:white;border-color:#E47A38;border-radius:5px">Autonomía</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-sm-10">
+                                <p>Siento que mi jefe actúa en pro de motivar al equipo de trabajo.</p>
+                            </div>
+                            <div class="col-sm-2">
+                                <button aling="right" style="background-color: #A6C751;color:white;border-color:#A6C751;border-radius:5px">Liderazgo</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-sm-10">
+                                <p>Siento que mi jefe actúa en pro de motivar al equipo de trabajo.</p>
+                            </div>
+                            <div class="col-sm-2">
+                                <button aling="right" style="background-color: #E47A38;color:white;border-color:#E47A38;border-radius:5px">Motivación</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-sm-12">
+                                <label>Preguntas Abiertas</label>
+                                <p>Si estuviera en tus manos, ¿qué harías para mejorar la empresa?</p>
+
+                            </div>
+                            <div class="col-sm-12">
+                                <textarea style="width: 100%;resize:none;border-radius:5px;background-color:#D9D9D9;color:#E47A38;border-color: #D9D9D9;"></textarea>
+
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-sm-12">
+                                <p>¿Qué sugerirías para mejorar la comunicación dentro de la empresa?</p>
+                            </div>
+                            <div class="col-sm-12">
+                                <textarea style="width: 100%;resize:none;border-radius:5px;background-color:#D9D9D9;color:#E47A38;border-color: #D9D9D9;"></textarea>
+
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-sm-12">
+                                <p>¿Qué te gustaría que hiciera la empresa para motivarte?</p>
+                            </div>
+                            <div class="col-sm-12">
+                                <textarea style="width: 100%;resize:none;border-radius:5px;background-color:#D9D9D9;color:#E47A38;border-color: #D9D9D9;"></textarea>
+
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-sm-12">
+                                <label> En una escala de 1 a 10 (Tomando el 10 como el nivel máximo)</label>
+                            </div>
+                            <div class="col-sm-12">
+                                <label> En una escala de 1 a 10 (Tomando el 10 como el nivel máximo)</label>
+
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="col-sm-12">
+                                <p> En una escala de 1 a 10 (Tomando el 10 como el nivel máximo)</p>
+                            </div>
+                            <div class="col-sm-12">
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="col-sm-12">
+                                <p>¿Recomendarías trabajar en tú equipo a un familiar o amigo?</p>
+                            </div>
+                            <div class="col-sm-12">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="col-sm-6">
+                                <label>Datos demográficos</label>
+                                <div>
+                                    <div class="col-sm-6">
+                                        <label style="font-size: 16px;line-height:25px;">Sexo</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Hombre</option>
+                                            <option value="1">Mujer</option>
+                                            <option value="1">Otro</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <br></br>
+                                <div>
+                                    <div class="col-sm-6">
+                                        <label style="font-size: 16px;line-height:25px;"">Edad en años</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>15-19</option>
+                                            <option value="1">20-24</option>
+                                            <option value="2">25-29</option>
+                                            <option selected>30-34</option>
+                                            <option value="1">35-39</option>
+                                            <option value="2">40-44</option>
+                                            <option selected>45-49</option>
+                                            <option value="1">50-59</option>
+                                            <option value="2">60-64</option>
+                                            <option selected>65-69</option>
+                                            <option value="1">70 o más</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br></br>
+                                <div>
+                                    <div class="col-sm-6">
+                                        <label style="font-size: 16px;line-height:25px;">Estado civil</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Casado</option>
+                                            <option value="1">Soltero</option>
+                                            <option value="2">Unión libre</option>
+                                            <option value="1">Divorciado</option>
+                                            <option value="2">Viudo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br></br>
+                                <div>
+                                    <div class="col-sm-6">
+                                        <label style="font-size: 16px;line-height:25px;">Ultimo grado educativo</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Primaria</option>
+                                            <option value="1">Secundaria</option>
+                                            <option value="2">Preparatoria o Bachillerato</option>
+                                            <option selected>Técnico Superior</option>
+                                            <option value="1">Licenciatura</option>
+                                            <option value="2">Maestría</option>
+                                            <option value="2">Doctorado</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br></br>
+                                <div>
+                                    <div class="col-sm-6">
+                                        <label style="font-size: 16px;line-height:25px;">Tienes alguna discapacidad</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>No</option>
+                                            <option value="1">si</option>
+                                            <option value="2">Personalizado</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <label>Datos laborales</label>
+                                <div>
+                                    <div class="col-sm-8">
+                                        <label style="font-size: 16px;line-height:25px;">Tipo de puesto</label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Operativo</option>
+                                            <option value="1">Profesional o técnico</option>
+                                            <option value="2">Supervisor</option>
+                                            <option value="2">Gerente</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br></br>
+                                <div>
+                                    <div class="col-sm-8">
+                                        <label style="font-size: 16px;line-height:25px;">Tipo de contratación:</label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Por obra o proyecto</option>
+                                            <option value="1">Por tiempo determinado (Temporal)</option>
+                                            <option value="2">Tiempo indeterminado</option>
+                                            <option value="2">Honorarios</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br></br>
+                                <div>
+                                    <div class="col-sm-8" style="margin-top:5px">
+                                        <label style="font-size: 16px;line-height:25px;">Tipo de personal:</label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select class="form-select">
+                                            <option selected>Sindicalizado</option>
+                                            <option value="1">Confianza</option>
+                                            <option value="2">Ninguno</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br></br>
+                                <div>
+                                    <div class="col-sm-8">
+                                        <label style="font-size: 16px;line-height:25px;">Tipo de jornada de trabajo:</label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Fijo nocturno (entre las 20:00 y 6:00 hrs)</option>
+                                            <option value="1">Fijo diurno (entre las 6:00 y 20:00 hrs)</option>
+                                            <option value="2">Fijo Mixto (Combinación de nocturno y diurno)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-sm-8">
+                                        <label style="font-size: 16px;line-height:25px;">Realiza rotación de turnos:</label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Si</option>
+                                            <option value="1">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-sm-8">
+                                        <label style="font-size: 16px;line-height:25px;">Experiencia (años):</label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Menos de 6 meses</option>
+                                            <option value="1">Entre 6 meses y 1 año</option>
+                                            <option value="2">Entre 1 a 4 años</option>
+                                            <option value="2">Entre 5 a 9 años</option>
+                                            <option value="2">Entre 10 a 14 años</option>
+                                            <option value="2">Entre 20 a 24 años</option>
+                                            <option value="2">25 años o más</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-sm-8">
+                                        <label style="font-size: 16px;line-height:25px;">Tiempo experiencia laboral:</label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>Menos de 6 meses</option>
+                                            <option value="1">Entre 6 meses y 1 año</option>
+                                            <option value="2">Entre 1 a 4 años</option>
+                                            <option selected>Entre 5 a 9 años</option>
+                                            <option value="1">Entre 10 a 14 años</option>
+                                            <option value="2">Entre 20 a 24 años</option>
+                                            <option value="2">25 años o más</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <div align="right">
+                                    <button style="border-radius: 7px;background:white;border-color:white;color:#9FCE63;font-size:16px;width:auto">Terminar</button>
+                                </div>
+                                <br></br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

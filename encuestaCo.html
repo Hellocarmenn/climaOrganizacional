@@ -1,0 +1,526 @@
+<?php 
+session_start();
+
+$con = mysql_connect("mundoprogresivocom.powwebmysql.com","ce_clima","Asdfg@12345");
+mysql_select_db ("climaorganizacional", $con) OR die ("No se puede conectar");
+
+if ($_SESSION['u']=="")
+	header("location:index.php");
+
+$query = "select count(*) as cant from clima2";
+$result = mysql_query($query);
+while($row = mysql_fetch_array($result))
+	$filas=$row["cant"];
+	
+$min=round($filas/2,0);
+?>
+<html lang="en">
+
+<head>
+    <title>EncuestaCo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<style>
+    body {
+        background-image: url("img/fondo.png");
+        color: #747575;
+
+    }
+    #global {
+        height: 680px;
+        border: 1px solid #ddd;
+        background: #f1f1f1;
+        opacity: 90%;
+        overflow-y: scroll;
+        width: auto;
+    }
+
+    img {
+        width: 40%;
+    }
+
+    label,
+    p {
+        font-weight: bold;
+        color: #838484;
+        font-size: 16px;
+        font-weight: lighter;
+        font-family: 'PT Sans', sans-serif;
+        list-style-type: none;
+        line-height: 30px;
+
+    }
+
+
+    a,
+    ul,
+    li {
+        font-weight: bold;
+        color: #838484;
+        font-size: 16px;
+        font-weight: lighter;
+        font-family: 'PT Sans', sans-serif;
+        list-style-type: none;
+
+
+    }
+
+    a:hover {
+        color: #DE8343;
+    }
+
+    .form-select {
+        background-color: #F2F2F2;
+        color: gray;
+        width: 100%;
+        border-radius: 2px;
+        border-color: #D9D9D9;
+        font-size: 16px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    select {
+        border-radius: 5px;
+        font-size: 8px;
+        height: 20px;
+    }
+
+    /*botones verdes */
+    @import url("https://fonts.googleapis.com/css?family=Nunito:400,900");
+
+
+    
+    input{
+        text-align: center;
+    }
+
+	hr {
+	
+		height: 2px;
+	
+		background-color:#555;
+	
+		margin-top: 20px;
+	
+		margin-bottom: 20px;
+	
+		width: 100%;
+	
+	}
+</style>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #727473">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img style="width: 8%; margin-right: 10px;" class="img-responsive pull-left" src="img/logo3.png" alt="logo">
+                <ul class="nav navbar-nav navbar-left" style="font-size: 16px;margin-top: 3%;">
+                    <li><a  style="color:white" href="#a1">Encuesta  de clima laboral</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    
+
+
+    <div class="container" style="width:auto;margin-top: 8%;padding: 5px;">
+        <div class="row">
+            
+                    <div class="panel-body" style="border-radius:15px;background-color:white;margin-top:2px;width:auto;margin-left:1.0%;font-size:12px">
+                        <div class="col-sm-6">
+                            <label style="font-size: 12px;">Encuesta de clima laboral</label>
+                            <p style="font-size: 12px;" align="left">Lee cuidadosamente cada pregunta antes de responder</p>
+                            <p style="font-size: 12px;" align="left">Aseg�rate de entender completamente lo que se est� preguntando.</p>
+                            <p style="font-size: 12px;" align="left">Selecciona la respuesta que mejor refleje tu opini�n o experiencia.</p>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div align="center" class="col-sm-6">
+                                <p style="font-size: 12px;"><strong>Tiempo promedio</strong></p>
+                                <p style="font-size: 12px;"><?php echo $min ?> min</p>
+                                <p style="font-size: 12px;"><strong>No.de reactivos</strong></p>
+                                <p style="font-size: 12px;"><?php echo $filas ?></p>
+                            </div>
+
+                            <div align="center" class="col-sm-6">
+                                <p style="font-size: 12px;"><strong>Tipo</strong></p>
+                                <p style="font-size: 12px;">An�nima</p>
+                                <p style="font-size: 12px;"><strong>Fecha limite</strong></p>
+                                <p style="font-size: 12px;">15/09/2023</p>
+                            </div>
+                        </div>
+                    </div>
+
+            <div class="col-sm-12">
+                <div id="global">
+                    <br>
+<h3 align="center">Factores y Dimensiones</h3>
+                    <br></br>
+					
+					<form name="form1" method="post" action="guardar.php">
+                    
+					<input type="hidden" name="folio" value="<?php echo $_GET["f"] ?>">
+					
+					<div class="col-sm-12">
+
+
+					
+                        <div class="col-sm-10">
+                            <p><strong><?php echo $row["Enunciado"] ?></strong></p>
+                        </div>
+                        <div class="col-sm-2">
+                                <button aling="right" style="background-color: #<?php echo $color ?>;color:white;border-color:#<?php echo $color ?>;border-radius:5px"><?php echo $row["Dimension"] ?></button>
+                        </div>
+                        <br></br>
+                        <div class="col-sm-12">
+
+						<table border="0" width="80%">
+							<tr align="center">
+								<td><input required value="1" type="radio" name="r<?php echo $row["id"] ?>" onClick="document.getElementById('caja<?php echo $row["id"] ?>').value='Totalmente en desacuerdo'"></td>
+								<td><input required value="2" type="radio" name="r<?php echo $row["id"] ?>" onClick="document.getElementById('caja<?php echo $row["id"] ?>').value='En desacuerdo'"></td>
+								<td><input required value="3" type="radio" name="r<?php echo $row["id"] ?>" onClick="document.getElementById('caja<?php echo $row["id"] ?>').value='Ni de acuerdo ni en desacuerdo'"></td>
+								<td><input required value="4" type="radio" name="r<?php echo $row["id"] ?>" onClick="document.getElementById('caja<?php echo $row["id"] ?>').value='De acuerdo'"></td>
+								<td><input required value="5" type="radio" name="r<?php echo $row["id"] ?>" onClick="document.getElementById('caja<?php echo $row["id"] ?>').value='Totalmente de acuerdo'"></td>
+							</tr>
+							<tr align="center">
+								<td width="20%">Totalmente<br>en desacuerdo</td>
+								<td width="20%">En desacuerdo</span></td>
+								<td width="20%">Ni de acuerdo<br>ni en desacuerdo</td>
+								<td width="20%">De acuerdo</td>
+								<td width="20%">Totalmente<br>de acuerdo</td>
+							</tr>
+							<tr>
+								<td colspan="5"><br><strong><input style="color:#FF0000 " type="text" class="form-control" id="caja<?php echo $row["id"] ?>" disabled></strong><br></td>
+							</tr>
+						</table>                                
+                                
+                        </div>
+                        
+						<br><br><br>
+						
+						<?php }?>
+						
+						<br><br><br><br>
+						<div>
+                            <div class="col-sm-12">
+								<h3 align="center">Preguntas abiertas</h3><br><br>
+                                <p>Si estuviera en tus manos, �qu� har�as para mejorar la empresa?</p>
+
+                            </div>
+                            <div class="col-sm-12">
+                                <textarea name="a1" style="width: 100%;resize:none;border-radius:5px;background-color:#D9D9D9;color:#E47A38;border-color: #D9D9D9;"></textarea>
+
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-sm-12">
+                                <p>�Qu� sugerir�as para mejorar la comunicaci�n dentro de la empresa?</p>
+                            </div>
+                            <div class="col-sm-12">
+                                <textarea name="a2" style="width: 100%;resize:none;border-radius:5px;background-color:#D9D9D9;color:#E47A38;border-color: #D9D9D9;"></textarea>
+
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-sm-12">
+                                <p>�Qu� te gustar�a que hiciera la empresa para motivarte?</p>
+                            </div>
+                            <div class="col-sm-12">
+                                <textarea name="a3" style="width: 100%;resize:none;border-radius:5px;background-color:#D9D9D9;color:#E47A38;border-color: #D9D9D9;"></textarea>
+
+                            </div>
+                        </div>
+
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+						<h1 align="center">eNPS</h1>
+						<p align="center">employee Net Promoter Score</p><br><br>
+
+                        <div>
+                            <div class="col-sm-12">
+                                <p> En una escala de 1 a 10 (Tomando el 10 como el nivel m�ximo)</p>
+                            </div>
+                            <div class="col-sm-12">
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="col-sm-12">
+                                <p>�Recomendar�as trabajar en t� equipo a un familiar o amigo?</p>
+								<table border="0" width="100%">
+									<tr style="background-image:url(linea2.png);">
+										<td width="11%"><input type="radio" name="e1" required value="1"></td>
+										<td width="11%"><input type="radio" name="e1" required value="2"></td>
+										<td width="11%"><input type="radio" name="e1" required value="3"></td>
+										<td width="11%"><input type="radio" name="e1" required value="4"></td>
+										<td width="11%"><input type="radio" name="e1" required value="5"></td>
+										<td width="11%"><input type="radio" name="e1" required value="6"></td>
+										<td width="11%"><input type="radio" name="e1" required value="7"></td>
+										<td width="11%"><input type="radio" name="e1" required value="8"></td>
+										<td width="11%"><input type="radio" name="e1" required value="9"></td>
+										<td width="1%"><input type="radio" name="e1" required value="10"></td>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>2</td>
+										<td>3</td>
+										<td>4</td>
+										<td>5</td>
+										<td>6</td>
+										<td>7</td>
+										<td>8</td>
+										<td>9</td>
+										<td>10</td>
+									</tr>
+								</table>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="col-sm-12">
+                                <p>�Recomendar�as trabajar en t� equipo a un familiar o amigo?</p>
+								<table border="0" width="100%">
+									<tr style="background-image:url(linea2.png);">
+										<td width="11%"><input type="radio" name="e2" required value="1"></td>
+										<td width="11%"><input type="radio" name="e2" required value="2"></td>
+										<td width="11%"><input type="radio" name="e2" required value="3"></td>
+										<td width="11%"><input type="radio" name="e2" required value="4"></td>
+										<td width="11%"><input type="radio" name="e2" required value="5"></td>
+										<td width="11%"><input type="radio" name="e2" required value="6"></td>
+										<td width="11%"><input type="radio" name="e2" required value="7"></td>
+										<td width="11%"><input type="radio" name="e2" required value="8"></td>
+										<td width="11%"><input type="radio" name="e2" required value="9"></td>
+										<td width="1%"><input type="radio" name="e2" required value="10"></td>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>2</td>
+										<td>3</td>
+										<td>4</td>
+										<td>5</td>
+										<td>6</td>
+										<td>7</td>
+										<td>8</td>
+										<td>9</td>
+										<td>10</td>
+									</tr>
+								</table>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="col-sm-12">
+                                <p>�Recomendar�as trabajar en t� equipo a un familiar o amigo?</p>
+								<table border="0" width="100%">
+									<tr style="background-image:url(linea2.png);">
+										<td width="11%"><input type="radio" name="e3" required value="1"></td>
+										<td width="11%"><input type="radio" name="e3" required value="2"></td>
+										<td width="11%"><input type="radio" name="e3" required value="3"></td>
+										<td width="11%"><input type="radio" name="e3" required value="4"></td>
+										<td width="11%"><input type="radio" name="e3" required value="5"></td>
+										<td width="11%"><input type="radio" name="e3" required value="6"></td>
+										<td width="11%"><input type="radio" name="e3" required value="7"></td>
+										<td width="11%"><input type="radio" name="e3" required value="8"></td>
+										<td width="11%"><input type="radio" name="e3" required value="9"></td>
+										<td width="1%"><input type="radio" name="e3" required value="10"></td>
+									</tr>
+									<tr>
+										<td>1</td>
+										<td>2</td>
+										<td>3</td>
+										<td>4</td>
+										<td>5</td>
+										<td>6</td>
+										<td>7</td>
+										<td>8</td>
+										<td>9</td>
+										<td>10</td>
+									</tr>
+								</table>
+                            </div>
+                        </div>
+
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+						<p>&nbsp;</p>
+	
+                        <div class="col-sm-12">
+                            <div class="col-sm-6">
+                                <label><strong>Datos demogr�ficos</strong></label>
+                                <div>
+                                    <div class="col-sm-6">
+                                        <label style="font-size: 16px;">Genero</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select class="form-select" name="genero" required>
+											<option value=""></option>
+                                            <option value="Hombre">Hombre</option>
+                                            <option value="Mujer">Mujer</option>
+                                            <option value="Personalizado">Personalizado</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br></br>
+                                <div>
+                                    <div class="col-sm-6">
+                                        <label style="font-size: 16px;">Edad</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select class="form-select" name="edad" required>
+											<option value=""></option>
+                                            <option value="15-19">15-19</option>
+                                            <option value="20-24">20-24</option>
+                                            <option value="25-29">25-29</option>
+                                            <option value="30-34">30-34</option>
+                                            <option value="35-39">35-39</option>
+                                            <option value="40-44">40-44</option>
+                                            <option value="45-49">45-49</option>
+                                            <option value="50-59">50-59</option>
+                                            <option value="60-64">60-64</option>
+                                            <option value="65-69">65-69</option>
+                                            <option value="70 o m�s">70 o m�s</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br></br>
+                                <div>
+                                    <div class="col-sm-6">
+                                        <label style="font-size: 16px;">Estado civil</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select class="form-select" name="estadocivil" required>
+											<option value=""></option>
+                                            <option value="Casado">Casado</option>
+                                            <option value="Soltero">Soltero</option>
+                                            <option value="Uni�n libre">Uni�n libre</option>
+                                            <option value="Divorciado">Divorciado</option>
+                                            <option value="Viudo">Viudo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br></br>
+                                <div>
+                                    <div class="col-sm-6">
+                                        <label style="font-size: 16px;">Antig�edad</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select class="form-select" name="antiguedad" required>
+											<option value=""></option>
+                                            <option value="Menos de 6 meses">Menos de 6 meses</option>
+                                            <option value="Entre 6 meses y 1 a�o">Entre 6 meses y 1 a�o</option>
+                                            <option value="Entre 1 a 4 a�os">Entre 1 a 4 a�os</option>
+                                            <option value="Entre 5 a 9 a�os">Entre 5 a 9 a�os</option>
+                                            <option value="Entre 10 a 14 a�os">Entre 10 a 14 a�os</option>
+                                            <option value="Entre 20 a 24 a�os">Entre 20 a 24 a�os</option>
+                                            <option value="25 a�os o m�s">25 a�os o m�s</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br></br>
+                                <div>
+                                    <div class="col-sm-6">
+                                        <label style="font-size: 16px;">Ultimo grado educativo</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select class="form-select" name="grado" required>
+											<option value=""></option>
+                                            <option value="Primaria">Primaria</option>
+                                            <option value="Secundaria">Secundaria</option>
+                                            <option value="Preparatoria o Bachillerato">Preparatoria o Bachillerato</option>
+                                            <option value="T�cnico Superior">T�cnico Superior</option>
+                                            <option value="Licenciatura">Licenciatura</option>
+                                            <option value="Maestr�a">Maestr�a</option>
+                                            <option value="Doctorado">Doctorado</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br></br>
+                                <div>
+                                    <div class="col-sm-6">
+                                        <label style="font-size: 16px;line-height:25px">Tienes alguna discapacidad</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select class="form-select" name="discapacidad" required>
+											<option value=""></option>
+                                            <option value="No">No</option>
+                                            <option value="S�">S�</option>
+                                            <option value="Personalizado">Personalizado</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <label><strong>No discriminaci�n</strong></label>
+                                <div>
+                                    <div class="col-sm-8">
+                                        <label style="font-size: 16px;line-height:25px;margin-top:5px">�Cuentan con una pol�tica de igualdad laboral y no discriminaci�n?</label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select class="form-select" name="igualdad" required>
+											<option value=""></option>
+                                            <option value="S�">S�</option>
+                                            <option value="No">No</option>
+                                            <option value="No s�">No s�</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br></br>
+                                <div>
+                                    <div class="col-sm-8">
+                                        <label style="font-size: 16px;line-height:25px;">�Cuentan con un c�digo de �tica y/o conducta?</label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select class="form-select" name="codigoetica" required>
+											<option value=""></option>
+                                            <option value="S�">S�</option>
+                                            <option value="No">No</option>
+                                            <option value="No s�">No s�</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br></br>
+                                <div>
+                                    <div class="col-sm-8" style="margin-top:5px">
+                                        <label style=" font-size: 16px;line-height:25px">�Cuentan con un comit� de igualdad y no discriminaci�n?</label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select class="form-select" name="comite" required>
+											<option value=""></option>
+                                            <option value="S�">S�</option>
+                                            <option value="No">No</option>
+                                            <option value="No s�">No s�</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <div align="right">
+									<input style="border-radius: 7px;background:white;border-color:white;color:#9FCE63;font-size:16px;width:auto" type="submit" value="Terminar">
+                                </div>
+                                <br></br>
+                            </div>
+                        </div>
+                    </div>
+
+				</form>
+                
+				</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

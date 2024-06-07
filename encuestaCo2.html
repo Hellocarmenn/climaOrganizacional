@@ -1,0 +1,500 @@
+<?php header('Content-Type: text/html; charset=UTF-8');?><!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>EncuestaCo2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Dropdown</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100&display=swap');
+
+    body {
+        background-image: url("img/fondo.png");
+        color: #747575;
+    }
+    #global {
+        height: 680px;
+        width: 73%;
+        overflow-y: scroll;
+    }
+
+    img {
+        width: 40%;
+    }
+
+    label {
+        font-family: 'Barlow', sans-serif;
+        color: #747575;
+        line-height: 35px;
+    }
+
+    span {
+        font-family: 'Barlow', sans-serif;
+        font-size: 18px;
+        color: #747575;
+    }
+
+    li {
+        font-size: 12px;
+        color: #747575;
+    }
+
+    a {
+        font-size: 15.8px;
+        font-weight: bold;
+        color: #717272;
+    }
+
+    a:hover {
+        color: #DE8343;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    .wrapper {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .steps {
+        counter-reset: counter;
+        list-style: none;
+        padding-left: 0;
+        margin-bottom: 0;
+        margin-left: 15px;
+    }
+
+    .steps li {
+        margin: 10px 0;
+    }
+
+    .steps li:before {
+        content: counter(counter);
+        counter-increment: counter;
+        box-sizing: border-box;
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        color: white;
+        text-align: center;
+        font-size: 10px;
+        line-height: 10px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        background-color: #4aa3df;
+    }
+
+    .steps li.active:before {
+        background-color: #2ecc71;
+    }
+
+    .steps li.active~li:before {
+        background-color: #95a5a6;
+    }
+
+    .steps li a,
+    .steps li span {
+        text-decoration: none;
+        display: inline-block;
+        padding-left: 60px;
+        color: black;
+        font-size: 7px;
+        line-height: 12px;
+        padding-top: 15px;
+        padding-bottom: 17px;
+    }
+
+    .steps li a:hover,
+    .steps li a:active,
+    .steps li a:focus {
+        color: #4aa3df;
+    }
+
+    @media (min-width: 768px) {
+        .steps {
+            display: flex;
+        }
+
+        .steps li {
+            width: calc(100% / 4);
+            position: relative;
+        }
+
+        .steps li:before {
+            float: none;
+            margin-right: 0;
+        }
+
+        .steps li:after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            top: 25px;
+            left: 45px;
+            transform: translateY(-50%);
+            z-index: -1;
+            height: 15px;
+            width: calc(100% - 40px);
+            border-radius: 5px;
+            background-color: #4aa3df=;
+        }
+
+        .steps li:last-of-type:after {
+            display: none;
+        }
+
+        .steps li.active:after {
+            background-color: #bdc3c7;
+        }
+
+        .steps li.active~li:after {
+            background-color: #ecf0f1;
+        }
+
+        .steps li a,
+        .steps li span {
+            display: block;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+
+    body .progress_inner__tabs .tab {
+        opacity: 0;
+        position: absolute;
+        top: 40px;
+        text-align: left;
+        margin-top: 80px;
+        padding: 1px;
+        background: #D9D9D9;
+        color: #DE8343;
+        border-radius: 3px;
+        -webkit-transition: all .2s;
+        transition: all .4s;
+        width: 920px;
+        font-size: 28px;
+    }
+
+    body .progress_inner__tabs .tab h1 {
+        margin: 0;
+    }
+
+    body .progress_inner__tabs .tab p {
+        font-weight: 400;
+        opacity: 0.8;
+    }
+</style>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #727473">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img style="width: 8%; margin-right: 10px;" class="img-responsive pull-left" src="img/logo3.png" alt="logo">
+                <ul class="nav navbar-nav navbar-left" style="font-size: 16px;margin-top: 3%;">
+                    <li><a  style="color:white" href="#a1">Inicio</a></li>
+                    <li><a style="color:white" href="#a2">Evaluaiciones</a></li>
+                    <li><a style="color:white" href="#a3">Cuestionario NOM – 035</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="width:100%;margin-top: 8%;">
+        <div class="row">
+            <div id="global" class="panel-body" style="background-color: #f1f1f1;width: auto;">
+                <div class="col-sm-8">
+                    <br>
+                    <div align="center" class="panel-body" style="border-radius:15px;background-color:white;margin-top:2px;width:135%;margin-left:1.0%">
+                        <div class="col-sm-6">
+                            <label>Motivación</label>
+                            <p>Lee cuidadosamente cada pregunta antes de respobnder</p>
+                            <p>Asegúrate de entender completamente lo que se está preguntando.</p>
+                            <p>Selecciona la respuesta que mejor refleje tu opinión o experiencia.</p>
+                        </div>
+                        <div align="center">
+                            <div class="col-sm-6">
+                                <div class="col-sm-4">
+                                    <p>Tiempo promedio</p>
+                                    <p>30min</p>
+                                    <hr>
+                                    </hr>
+                                    <p>No.de reactivos</p>
+                                    <p>90</p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <p>Tipo</p>
+                                    <p>Anónima</p>
+                                    <hr>
+                                    </hr>
+                                    <p>Fecha limite</p>
+                                    <p>15/09/2023</p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <button style="border-radius: 25px;color:#DE8343;background-color:white;  border: .5px solid white;box-shadow: 10px 4px 4px gray;">En proceso</button>
+                                    <br></br>
+                                    <br></br>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br></br>
+                    <div class="col-sm-12">
+                        <div class="wrapper">
+                            <ul class="steps">
+                                <li class="active">
+                                    <label for='step-1'></label>
+                                    <a>Totalmente en desacuerdo</a>
+                                </li>
+                                <li>
+                                    <label for='step-2'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-3'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-4'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-5'></label>
+
+                                    <span>
+                                        Toltalmente de acuerdo
+                                    </span>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="wrapper">
+                            <ul class="steps">
+                                <li class="active">
+                                    <label for='step-1'></label>
+                                    <a>Totalmente en desacuerdo</a>
+                                </li>
+                                <li>
+                                    <label for='step-2'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-3'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-4'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-5'></label>
+
+                                    <span>
+                                        Toltalmente de acuerdo
+                                    </span>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="wrapper">
+                            <ul class="steps">
+                                <li class="active">
+                                    <label for='step-1'></label>
+                                    <a>Totalmente en desacuerdo</a>
+                                </li>
+                                <li>
+                                    <label for='step-2'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-3'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-4'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-5'></label>
+
+                                    <span>
+                                        Toltalmente de acuerdo
+                                    </span>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="wrapper">
+                            <ul class="steps">
+                                <li class="active">
+                                    <label for='step-1'></label>
+                                    <a>Totalmente en desacuerdo</a>
+                                </li>
+                                <li>
+                                    <label for='step-2'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-3'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-4'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-5'></label>
+
+                                    <span>
+                                        Toltalmente de acuerdo
+                                    </span>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="wrapper">
+                            <ul class="steps">
+                                <li class="active">
+                                    <label for='step-1'></label>
+                                    <a>Totalmente en desacuerdo</a>
+                                </li>
+                                <li>
+                                    <label for='step-2'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-3'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-4'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-5'></label>
+
+                                    <span>
+                                        Toltalmente de acuerdo
+                                    </span>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="wrapper">
+                            <ul class="steps">
+                                <li class="active">
+                                    <label for='step-1'></label>
+                                    <a>Totalmente en desacuerdo</a>
+                                </li>
+                                <li>
+                                    <label for='step-2'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-3'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-4'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-5'></label>
+
+                                    <span>
+                                        Toltalmente de acuerdo
+                                    </span>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="wrapper">
+                            <ul class="steps">
+                                <li class="active">
+                                    <label for='step-1'></label>
+                                    <a>Totalmente en desacuerdo</a>
+                                </li>
+                                <li>
+                                    <label for='step-2'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-3'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-4'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-5'></label>
+
+                                    <span>
+                                        Toltalmente de acuerdo
+                                    </span>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="wrapper">
+                            <ul class="steps">
+                                <li class="active">
+                                    <label for='step-1'></label>
+                                    <a>Totalmente en desacuerdo</a>
+                                </li>
+                                <li>
+                                    <label for='step-2'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-3'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-4'></label>
+
+                                </li>
+                                <li>
+                                    <label for='step-5'></label>
+
+                                    <span>
+                                        Toltalmente de acuerdo
+                                    </span>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var jQliList = $('ul.steps li');
+        jQliList.on('click', function() {
+            jQliList.removeClass('active');
+            $(this).addClass('active');
+        });
+    </script>
+</body>
+
+</html>

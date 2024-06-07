@@ -1,0 +1,290 @@
+<?php header('Content-Type: text/html; charset=UTF-8');?><!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Clima Organizacional</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script type = "text/javascript" >
+    history.pushState(null, null, 'gracias.php');
+    window.addEventListener('popstate', function(event) {
+    history.pushState(null, null, 'gracias.php');});
+</script>
+
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100&display=swap');
+
+    body {
+        background-image: url("img/fondo.png");
+        color: #747575;
+        font-family: 'PT Sans', sans-serif;
+
+    }
+
+    #global {
+        height: 680px;
+        border: 1px solid #ddd;
+        background: #f1f1f1;
+        opacity: 90%;
+        width: auto;
+    }
+
+    img {
+        width: 40%;
+    }
+
+    label,
+    p {
+        font-weight: bold;
+        color: #838484;
+        font-size: 16px;
+        font-weight: lighter;
+        font-family: 'PT Sans', sans-serif;
+        list-style-type: none;
+        line-height: 30px;
+
+    }
+
+
+    a,
+    ul,
+    li {
+        font-weight: bold;
+        color: #838484;
+        font-size: 16px;
+        font-weight: lighter;
+        font-family: 'PT Sans', sans-serif;
+        list-style-type: none;
+
+
+    }
+
+    a:hover {
+        color: #DE8343;
+    }
+
+    .form-select {
+        background-color: #F2F2F2;
+        color: gray;
+        width: 100%;
+        border-radius: 2px;
+        border-color: #D9D9D9;
+        font-size: 16px;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    select {
+        border-radius: 5px;
+        font-size: 8px;
+        height: 20px;
+    }
+
+    /*botones verdes */
+    @import url("https://fonts.googleapis.com/css?family=Nunito:400,900");
+
+    /*Barra de proceso */
+    body .progress_inner__bar,
+    body .progress_inner__bar--set {
+        height: 6px;
+        background: green;
+
+    }
+
+    body .progress_inner__step:before {
+        color: white;
+        background: #9DCB62;
+        font-size: 16px;
+        border-radius: 80%;
+        letter-spacing: 20px;
+
+    }
+
+    body .progress_inner__step {
+        font-size: 14px;
+        inline-size: 140px;
+        float: left;
+        margin-top: -8px;
+
+    }
+
+    body .progress_inner__step label {
+        padding-top: 50px;
+        top: -35px;
+        display: block;
+        position: relative;
+        cursor: pointer;
+    }
+
+    body .progress_inner__step:hover:before {
+        color: white;
+    }
+
+    body .progress_inner {
+        height: 200px;
+        width: 700px;
+    }
+
+    body .progress_inner #step-5:checked+div {
+        width: 135%;
+    }
+
+    body .progress_inner #step-5:checked+div+div+div>.tab:nth-of-type(5) {
+        opacity: 1;
+        top: 0;
+
+    }
+
+    body .progress_inner #step-5:checked+div+div+div+div {
+        right: 10%;
+
+    }
+
+    body .progress_inner #step-4:checked+input+div {
+        width: 60%;
+    }
+
+    body .progress_inner #step-4:checked+input+div+div+div>.tab:nth-of-type(4) {
+        opacity: 1;
+        top: 0;
+
+    }
+
+    body .progress_inner #step-4:checked+input+div+div+div+div {
+        right: 30%;
+    }
+
+    body .progress_inner #step-3:checked+input+input+div {
+        width: 40%;
+    }
+
+    body .progress_inner #step-3:checked+input+input+div+div+div>.tab:nth-of-type(3) {
+        opacity: 1;
+        top: 0;
+    }
+
+    body .progress_inner #step-3:checked+input+input+div+div+div+div {
+        right: 50%;
+    }
+
+    body .progress_inner #step-2:checked+input+input+input+div {
+        width: 20%;
+    }
+
+    body .progress_inner #step-2:checked+input+input+input+div+div+div>.tab:nth-of-type(2) {
+        opacity: 1;
+        top: 0;
+    }
+
+    body .progress_inner #step-2:checked+input+input+input+div+div+div+div {
+        right: 70%;
+    }
+
+    body .progress_inner #step-1:checked+input+input+input+input+div {
+        width: 0%;
+    }
+
+    body .progress_inner #step-1:checked+input+input+input+input+div+div+div>.tab:nth-of-type(1) {
+        opacity: 1;
+        top: 0;
+    }
+
+    body .progress_inner #step-1:checked+input+input+input+input+div+div+div+div {
+        right: 90%;
+    }
+
+    body .progress_inner__step:nth-of-type(1):before {
+        content: "1";
+    }
+
+    body .progress_inner__step:nth-of-type(2):before {
+        content: "2";
+    }
+
+    body .progress_inner__step:nth-of-type(3):before {
+        content: "3";
+    }
+
+    body .progress_inner__step:nth-of-type(4):before {
+        content: "4";
+    }
+
+    body .progress_inner__step:nth-of-type(5):before {
+        content: "5";
+    }
+
+    body .progress_inner__bar--set {
+        width: 135%;
+        top: -6px;
+        background: #9FCE63;
+        position: relative;
+        z-index: -2;
+
+    }
+
+    /*inputs barra */
+    body .progress_inner__tabs .tab {
+        opacity: 0;
+        position: absolute;
+        top: 40px;
+        margin-top: 80px;
+        padding: 1px;
+        background: #D9D9D9;
+        border-radius: 10px;
+        -webkit-transition: all .2s;
+        transition: all .2s;
+        width: 100%;
+        color: #DE8343;
+    }
+
+    body .progress_inner input[type="radio"] {
+        display: none;
+
+    }
+    input{
+        text-align: center;
+    }
+</style>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #727473">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img style="width: 8%; margin-right: 10px;" class="img-responsive pull-left" src="img/logo3.png" alt="logo">
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="width:auto">
+       <p>&nbsp;</p>
+       <p>&nbsp;</p>
+       <p>&nbsp;</p>
+       <p>&nbsp;</p>
+       <p>&nbsp;</p>
+	    <div class="row">
+            
+
+            <div class="col-sm-6 col-sm-offset-3">
+                <div id="global" style="height:300px ">
+       <p>&nbsp;</p>
+       <p>&nbsp;</p>
+       <p>&nbsp;</p>
+						<h3 align="center">Gracias por tu participación</h3>
+       <p>&nbsp;</p>
+						
+						<center><input style="border-radius: 7px;background:white;border-color:white;color:#9FCE63;font-size:16px;width:auto" type="submit" value="Salir" onClick="document.location.href='index.php'">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

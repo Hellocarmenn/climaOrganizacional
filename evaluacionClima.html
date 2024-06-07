@@ -1,0 +1,126 @@
+<?php header('Content-Type: text/html; charset=UTF-8');?><!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Clima Organizacional</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+    body {
+        background-image: url("img/fondo.png");
+        font-family: 'PT Sans', sans-serif;
+        font-weight: lighter;
+    }
+
+    label {
+        font-size: 16px;
+        font-family: 'PT Sans', sans-serif;
+        color: #838484;
+    }
+
+    li {
+
+        color: #838484;
+    }
+
+    a {
+
+        color: #838484;
+        font-size: 16px;
+        font-family: 'PT Sans', sans-serif;
+        list-style-type: none;
+    }
+
+    a:hover {
+        color: #DE8343;
+    }
+    button {
+        border-radius: 5px;
+        width: auto;
+        font-size: 18px;
+        background-color: white;
+        border: 3px solid #E3E3E3;
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #727473">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img style="width: 8%; margin-right: 10px;" class="img-responsive pull-left" src="img/logo3.png" alt="logo">
+                <ul class="nav navbar-nav navbar-left" style="font-size: 16px;margin-top: 3%;">
+                    <li><a  style="color:white" href="#a1">Inicio</a></li>
+                    <li><a style="color:white" href="#a2">Evaluaiciones</a></li>
+                    <li><a style="color:white" href="#a3">Evaluacion Clima</a></li>
+                    <li><a style="color:white" href="#a3">Centro de trabajo hasta 50 trabajadores</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="width:auto;margin-top:10%">
+        <div class="row" style="margin-top:-2%;">
+            <div class="col-sm-3">
+                <div class="panel-body" style="border-radius:15px;background-color:#F6F6F6;height:700px;opacity:90%">
+                    <div align="center">
+                        <label style="align-content: center;">Elige el tipo de evaluación</label>
+
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <label><a style="font-family: 'PT Sans', sans-serif;" class="active" href="evaluacionClima.php">Encuesta de clima laboral</a></label>
+                    <br></br>
+                    <label><a style="font-family: 'PT Sans', sans-serif;" href="#">de acuerdoCuestionario NOM – 035
+                            (Factores de Riesgos Psicosociales)</a></label>
+                </div>
+
+            </div>
+            <div class="col-sm-6">
+                <div class="panel-body" style="border-radius:15px;background-color:#F6F6F6;height:700px;opacity:90%">
+                <label style=" line-height: 25px;font-size:16px;color:gray">
+                        <br>
+                        <br>
+                        Es una herramienta de diagnóstico utilizada por las organizaciones para evaluar y medir el ambiente laboral, la satisfacción de los empleados y otros aspectos relacionados con la cultura y el funcionamiento interno de la empresa.<br>
+                        <br>
+                        El propósito principal de esta encuesta es recopilar información y opiniones de los empleados sobre diversos aspectos de su experiencia laboral para identificar áreas de fortaleza y oportunidades de mejora dentro de la organización.<br>
+                        <br>
+                        Estas encuestas se realizan de manera anónima y confidencial para fomentar la honestidad y sinceridad en las respuestas de los empleados. Una vez que se recopilan los datos, se analizan para identificar tendencias, patrones y áreas problemáticas.<br>
+                        <br>
+                        A partir de los resultados obtenidos, la dirección y los responsables de recursos humanos pueden tomar decisiones informadas para implementar mejoras y cambios en la organización que contribuyan a crear un ambiente laboral más saludable, motivador y productivo.<br>
+                        <br>
+                        La encuesta de clima organizacional es una herramienta valiosa para comprender cómo los empleados perciben y experimentan el entorno laboral, lo que permite a la organización tomar medidas concretas para optimizar su funcionamiento interno y el bienestar de sus colaboradores.
+                        <br>
+                    </label>
+
+                </div>
+
+            </div>
+            <div class="col-sm-3">
+                <div class="panel-body" style="border-radius:5px;background-color:#F6F6F6;height:700px;opacity:90%">
+					<button class="button" onClick="window.location.href='factores.php'"><strong>Configurar cuestionario</strong></button>
+					<br><br>
+					<br>
+					<label>Importar base de empleados:</label>
+					<a href="plantilla.xlsx" download>Descargar plantilla</a>
+					<br><br>
+					<form action="read2.php" enctype="multipart/form-data" method="post">
+					<input class="button" type="file" name="filed1"><br>
+					<input class="button" type="submit" value="Cargar base">
+                	</form>
+					<br><br>
+					<button class="button" onClick="window.location.href='mail.php'"><strong>Enviar correos</strong></button>
+				</div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

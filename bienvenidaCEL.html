@@ -1,0 +1,176 @@
+<?php header('Content-Type: text/html; charset=UTF-8');?>
+<?php 
+session_start();
+if ($_SESSION['u']=="")
+	header("location:index.php");
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>BienvenidaCEL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<style>
+    body {
+        background-image: url("img/fondo.png");
+        color: #747575;
+        font-family: 'PT Sans', sans-serif;
+        font-weight: normal;
+
+    }
+
+    label {
+        font-size: 16px;
+        color: gray;
+        font-weight: normal;
+    }
+
+    p {
+        font-size: 16px;
+
+    }
+
+
+    li {
+
+        color: #838484;
+    }
+
+    a {
+        color: #838484;
+        font-size: 16px;
+        list-style-type: none;
+
+    }
+
+    a:hover {
+        color: #DE8343;
+    }
+
+
+    .card-img-top.circular {
+        border-radius: 50%;
+        width: 100px;
+        /* Ajusta el tamaño de la imagen */
+        height: 100px;
+        margin-top: -50px;
+        /* Mueve la imagen hacia arriba para que se superponga ligeramente */
+        position: relative;
+        z-index: 1;
+        width: auto;
+        margin-left: 25%;
+    }
+
+    .card {
+        height: 260px;
+        width: 50%;
+        border-radius: 15px;
+        margin-top: 40%;
+        margin-left: 25%;
+    }
+
+    .card-img-top {
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        /* Cambia los valores según tus preferencias */
+    }
+</style>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #727473">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img style="width: 8%; margin-right: 10px;" class="img-responsive pull-left" src="img/logo3.png"
+                    alt="logo">
+                <ul class="nav navbar-nav navbar-left" style="font-size: 16px;margin-top: 3%;">
+                    <li><a style="color:white" href="#a1">Inicio</a></li>
+                    <li><a style="color:white" href="#a2">Evaluaiciones</a></li>
+                    <li><a style="color:white" href="#a3">Cuestionario NOM – 035</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container" style="width:auto;margin-top:10%">
+        <div class="row" style="margin-top:-2%;">
+            <div class="col-sm-4">
+                <div class="panel-body" style="border-radius:15px;background-color:#F6F6F6;height:750px">
+                    <div class="card" style="background-color: #6ed141">
+                        <img src="img/usuario1.png" class="card-img-top circular" alt="..." />
+                        <div align="center">
+                            <h5 class="card-title" style="font-weight: 800; margin-top: 10%;color: white;">
+                                Iniciar sesión
+                            </h5>
+                            <label style="color:black">Folio</label>
+                            <?php $pass=substr(str_shuffle('1234567890') , 0 , 10 );?>
+                            <input style="border-radius: 5px;background-color:#F5F5F5;border-color:#F5F5F5 ;">
+                            <input name="folio" type="hidden" >
+                            <br></br>
+
+                            <a href="#" class="btn" onClick="window.location.href='login.php'" style="
+                                background: #6ed141;
+                                border-color: white;
+                                color: white;
+                                font-weight: 800;
+                                margin-top: 10%;
+                            ">Ingresar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="panel-body" style="border-radius:15px;background-color:#F6F6F6;height:750px">
+                    <br>
+                    <label align="center">Encuesta de clima laboral</label>
+                    <br>
+                    <br>
+                    <p align="center">¿Cómo puedes participar?</p>
+                    <br>
+                    <br>
+                    <p align="center">Dedica unos minutos</p>
+                    <label align="center">La encuesta no tomará mucho tiempo; estimamos que podrás completarla en 30
+                        minutos. Tu opinión es valiosa para nosotros.</label>
+                    <br>
+                    <p align="center">Sé honesto y constructivo</p>
+                    <label align="center">Por favor, sé sincero en tus respuestas. Esto nos ayudará a identificar áreas
+                        de mejora y a tomar medidas concretas.</label>
+                    <br>
+                    <p align="center">¿Qué puedes esperar después de la encuesta?</p>
+                    <label align="center">Una vez que hayas completado la encuesta, nuestro equipo analizará los
+                        resultados y trabajará en planes de acción para abordar cualquier problema identificado. Tu voz
+                        será parte fundamental en la toma de decisiones para mejorar el entorno de trabajo.</label>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel-body" style="border-radius:5px;background-color:#F6F6F6;height:750px">
+                    <label style="line-height: 30px;font-size:17px;color:gray">
+                        <p align="center" style="color: green;">Bienvenido a</p>
+                        <div align="center">
+                            <img style="width:65% ;" class="img-responsive" src="img/rh.png">
+                        </div>
+                        <br>
+                        <p align="center">Es un placer invitarlo a participar en nuestra Encuesta de clima
+                            organizacional. <br>
+                            Su empresa, valora enormemente sus opiniones y quiere asegurarse de que su experiencia
+                            laboral sea lo mejor posible.<br>
+                            Tu participación desempeñará un papel fundamental en la creación de un entorno de trabajo
+                            más satisfactorio y productivo para todos nosotros.<br>
+                            La encuesta es confidencial, y tus respuestas serán anónimas.<br>
+                            ¡Adelante y hagamos juntos la diferencia!
+                        </p>
+                        <br>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

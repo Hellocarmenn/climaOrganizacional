@@ -1,0 +1,454 @@
+<?php header('Content-Type: text/html; charset=UTF-8');?><!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Clima Organizacional</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+
+    body {
+        background-image: url("img/fondo.png");
+        color: #747575;
+    }
+
+    img {
+        width: 40%;
+    }
+
+    hr {
+        background-color: #727373;
+        color: #727373;
+        height: 1px;
+        width: 100%;
+    }
+
+    label,
+    p {
+        font-weight: bold;
+        color: #838484;
+        font-size: 16px;
+        font-weight: lighter;
+        font-family: 'PT Sans', sans-serif;
+        list-style-type: none;
+        line-height: 20px;
+
+    }
+    a,
+    ul,
+    li {
+        font-weight: bold;
+        color: #838484;
+        font-size: 16px;
+        font-weight: lighter;
+        font-family: 'PT Sans', sans-serif;
+        list-style-type: none;
+
+
+    }
+
+    a:hover {
+        color: #DE8343;
+    }
+
+    span {
+        font-family: 'Barlow', sans-serif;
+        font-size: 16px;
+        color: #747575;
+    }
+
+    p {
+        font-size: 20px;
+    }
+
+
+    .dropdown {
+        position: absolute;
+        width: 75%;
+        max-width: 300px;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        padding: 1em;
+        display: grid;
+        align-content: center;
+        gap: 1rem;
+
+        overflow-y: auto;
+
+
+        clip-path: var(--clip, inset(0 0 100% 100%));
+        transition: clip-path .5s;
+    }
+
+    .dropdown__list {
+        list-style: none;
+    }
+
+    .dropdown__link {
+        color: rgb(184, 187, 191);
+        padding: 1em .7em;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: .6rem;
+        position: relative;
+        border-radius: 6px;
+    }
+
+    .dropdown__list:has( :checked) {
+        --rows: 1fr;
+        --rotate: rotate(180deg);
+        --bg: #28303B;
+    }
+
+    .dropdown__check {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .dropdown__arrow {
+        margin-left: auto;
+        transform: var(--rotate, 0);
+        transition: .2s transform;
+    }
+
+    .dropdown__content {
+        display: grid;
+        grid-template-rows: var(--rows, 0fr);
+        transition: .3s grid-template-rows;
+    }
+
+    .dropdown__sub {
+        overflow: hidden;
+
+    }
+
+    .dropdown__li {
+        width: 85%;
+        list-style: none;
+        margin-left: auto;
+    }
+
+    .dropdown__anchor {
+        padding: 1em 0;
+        display: block;
+        color: #B6BABE;
+        text-decoration: none;
+    }
+
+    .material-switch>input[type="checkbox"] {
+        display: none;
+    }
+
+    .material-switch>label {
+        cursor: pointer;
+        height: 0px;
+        position: relative;
+        width: 40px;
+    }
+
+    .material-switch>label::before {
+        background: rgb(0, 0, 0);
+        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        content: '';
+        height: 16px;
+        margin-top: -8px;
+        position: absolute;
+        opacity: 0.3;
+        transition: all 0.4s ease-in-out;
+        width: 40px;
+    }
+
+    .material-switch>label::after {
+        background: rgb(255, 255, 255);
+        border-radius: 16px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        content: '';
+        height: 24px;
+        left: -4px;
+        margin-top: -8px;
+        position: absolute;
+        top: -4px;
+        transition: all 0.3s ease-in-out;
+        width: 24px;
+    }
+
+    .material-switch>input[type="checkbox"]:checked+label::before {
+        background: inherit;
+        opacity: 0.5;
+    }
+
+    .material-switch>input[type="checkbox"]:checked+label::after {
+        background: inherit;
+        left: 20px;
+    }
+    input{
+        border-color: #F2F2F2;
+        background-color: white;
+        border-color: #838484;
+    }
+
+    #global {
+        overflow-y: scroll;
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #727473">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img style="width: 8%; margin-right: 10px;" class="img-responsive pull-left" src="img/logo3.png" alt="logo">
+                <ul class="nav navbar-nav navbar-left" style="font-size: 16px;margin-top: 3%;">
+                    <li><a  style="color:white" href="#a1">Inicio</a></li>
+                    <li><a style="color:white" href="#a2">Evaluaiciones</a></li>
+                    <li><a style="color:white" href="#a3">Cuestionario NOM – 035</a></li>
+                    <li><a style="color:white" href="#a3">Centro de trabajo hasta 50 trabajadores</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="width:auto;margin-top: 8%;">
+        <div class="col-sm-3">
+            <div class="panel-body" style="border-radius:5px;background-color:#F6F6F6;width:100%;height:80vh;opacity:90%;">
+                <label>Cuestionario NOM-035</label>
+                <li class="dropdown__list">
+                    <a href="#" class="dropdown__link">
+                        <span class="dropdown__span">Cuestionarios</span>
+                        <img style="width: 8%;" src="img/5963015.png" class="dropdown__arrow">
+                        <input type="checkbox" class="dropdown__check">
+                    </a>
+                    <div class="dropdown__content">
+
+                        <ul class="dropdown__sub">
+
+                            <li class="dropdown__li">
+                                <a href="DOF1.php" class="dropdown__anchor">Centros de trabajo que tengan hasta 50 trabajadores</a>
+                            </li>
+                            <li class="dropdown__li">
+                                <a href="DOF2.php" class="dropdown__anchor">Centros de trabajo que cuenten con mas de 50 trabajadores</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div id="global" class="panel-body" style="border-radius:15px;background-color:#F6F6F6;width:100%;height:80vh;opacity:90%">
+                <div class="col-sm-12">
+                    <p align="center">IDENTIFICACIÓN Y ANÁLISIS DE LOS FACTORES DE RIESGO PSICOSOCIAL Y EVALUACIÓN DEL
+                        ENTORNO ORGANIZACIONAL EN LOS CENTROS DE TRABAJO
+                    </p>
+
+                    <label>La identificación y análisis de los factores de riesgo psicosocial se podrá realizar aplicando el cuestionario para identificar los factores de riesgo psicosocial en los centros de trabajo.</label>
+                    <br></br>
+                    <label>1. El cuestionario deberá aplicarse a todos los trabajadores del centro de trabajo, o bien, se podrá aplicar a una muestra representativa de éstos. El tamaño de la muestra se deberá determinar conforme a la Ecuación 1 siguiente:</label>
+                    <br></br>
+                    <div align="center">
+                        <img src="img/formula1.png" class="img-responsive" style="width: 18%;">
+                    </div>
+                    <label>En donde:</label>
+                    <br>
+                    <label>N es el número total de trabajadores del centro de trabajo.</label>
+                    <br>
+                    <label>n es el número de trabajadores a los que se les deberán aplicarán los cuestionarios.</label>
+                    <br>
+                    <label>0.9604 y 0.0025 permanecen constantes.</label>
+                    <label>Ejemplo: Para 100 trabajadores, N=100, sustituyendo en la Ecuación 1, tenemos:</label>
+                    <br>
+                    <div align="center" class="col-sm-6">
+                        <img src="img/formula2.png" class="img-responsive" style="width: 50%;">
+                    </div>
+                    <div align="center" class="col-sm-6">
+                        <img src="img/formula3.png" class="img-responsive" style="width: 50%;">
+                    </div>
+                    <label>En este caso el número de trabajadores será de 80.</label>
+                    <br>
+                    <label>La selección de los trabajadores deberá realizarse de forma aleatoria, de manera que todos los trabajadores puedan ser
+                        considerados para la aplicación de los cuestionarios, sin importar, su turno, tipo de puesto, área de trabajo,
+                        departamento, etc.
+                    </label>
+                    <br>
+                    <label>La muestra se distribuirá entre hombres y mujeres conforme al porcentaje de cada género en el centro de trabajo.</label>
+                    <br>
+                    <label>2.Para la aplicación del cuestionario deberá cumplirse, al menos, las condiciones siguientes:</label>
+                    <br>
+                    <ol>
+                        a) Antes de iniciar la aplicación del cuestionario deberá:
+                        <ol>
+                            1)Determinar el número mínimo de trabajadores a los que se les aplicarán los cuestionarios que al menos deberá corresponder con el tamaño de la muestra calculado con la Ecuación 1 de la presente Norma;
+                        </ol>
+                        <ol>
+                            2)Verificar que las condiciones de las instalaciones y mobiliario sean idóneas;
+                        </ol>
+                        <ol>
+                            3)Realizar la presentación del aplicador ante las personas a evaluar;
+                        </ol>
+                        <ol>
+                            4)Explicar el objetivo de la evaluación;
+                        </ol>
+                        <ol>
+                            5)Enfatizar en la protección de la privacidad y confidencialidad del manejo de los datos, y que el uso de la información proporcionada por el trabajador (ver Guía de referencia V Datos del trabajador) y de sus resultados será exclusivamente para fines de mejora del ambiente de trabajo;
+
+                        </ol>
+                        <ol>
+                            6)Dar instrucciones claras sobre: la forma de responder a las preguntas de las diferentes secciones; que se conteste el cuestionario completamente; que no existen respuestas correctas o incorrectas; que es necesaria su concentración; que se consideren las condiciones de los dos últimos meses, y que su opinión es lo más importante por lo que se le pide que conteste con sinceridad, y
+                        </ol>
+                        <ol>
+                            7)Iniciar la aplicación en el orden siguiente: en primer lugar, del cuestionario sobre factores de riesgo psicosocial y, en segundo lugar, en su caso, realizar el llenado de la ficha de datos generales sobre el trabajador.
+                        </ol>
+                    </ol>
+                    <ol>
+                        b)Durante la aplicación del cuestionario se deberá:
+                        <ol>
+                            1)Propiciar un ambiente de respeto y confianza;
+                        </ol>
+                        <ol>
+                            2)Permitir una comunicación fluida entre los trabajadores y evaluador;
+                        </ol>
+                        <ol>
+                            3)Aclarar dudas y brindar apoyo a los trabajadores que lo requieran;
+                        </ol>
+                        <ol>
+                            4)Verificar que las indicaciones proporcionadas hayan quedado claras;
+                        </ol>
+                        <ol>
+                            5)Evitar interrumpir a los trabajadores cuando realicen sus respuestas, y
+                        </ol>
+                        <ol>
+                            6)Evitar conducir, persuadir o dirigir respuestas, y
+                        </ol>
+                    </ol>
+                    <ol>
+                        c)Después de la aplicación del cuestionario se deberá:
+                        <ol>
+                            1)Recoger cada cuestionario y verificar que hayan sido respondidos completamente, sin tachaduras o enmendaduras, y
+                        </ol>
+                        <ol>
+                            2)Comprobar que la cantidad de cuestionarios entregados corresponda con la cantidad de cuestionarios respondidos, y que a su vez corresponda con el tamaño mínimo de la muestra.
+                        </ol>
+                    </ol>
+                    <br>
+                    <div class="col-sm-12" style="margin-top: 2px;">
+                        <label>Número de Centros de trabajo.<input style="width: 30%;"></label>
+                    </div>
+                    <br>
+                    <div class="col-sm-12"  style="margin-top:4%;">
+                        <div class="col-sm-3">
+                            <label>1 C. T.</label>
+                            <input style="width: 50%;">
+                        </div>
+                        <div class="col-sm-3">
+                            <label style="font-size: 10px;line-height:8px"># Personas<br> por C. T.</label>
+                            <input style="width: 50%">
+                        </div>
+                        <div class=" col-sm-3">
+                            <label>Encuesta</label>
+                            <input style="width: 50%">
+                        </div>
+                        <div class=" col-sm-3">
+                            <label style="font-size: 10px;line-height:8px">Tamaño de<br>muestra</label>
+                            <input " style=" width: 50%">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-3">
+                            <label>1 C. T.</label>
+                            <input style="width: 50%">
+                        </div>
+                        <div class="col-sm-3">
+                            <label style="font-size: 10px;line-height:8px"># Personas<br> por C. T.</label>
+                            <input style="width: 50%">
+                        </div>
+                        <div class=" col-sm-3">
+                            <label>Encuesta</label>
+                            <input style="width: 50%  ">
+                        </div>
+                        <div class=" col-sm-3">
+                            <label style="font-size: 10px;line-height:8px">Tamaño de<br>muestra</label>
+                            <input " style=" width: 50%">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-3">
+                            <label>1 C. T.</label>
+                            <input style="width: 50%">
+                        </div>
+                        <div class="col-sm-3">
+                            <label style="font-size: 10px;line-height:8px"># Personas<br> por C. T.</label>
+                            <input style="width: 50%">
+                        </div>
+                        <div class=" col-sm-3">
+                            <label>Encuesta</label>
+                            <input style="width: 50%">
+                        </div>
+                        <div class=" col-sm-3">
+                            <label style="font-size: 10px;line-height:8px">Tamaño de<br>muestra</label>
+                            <input " style=" width: 50%">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-3">
+                            <label>1 C. T.</label>
+                            <input style="width: 50%;font-size:5px;height:25px;border-color:gray;background-color:#F6F6F6">
+                        </div>
+                        <div class="col-sm-3">
+                            <label style="font-size: 10px;line-height:8px"># Personas<br> por C. T.</label>
+                            <input style="width: 50%">
+                        </div>
+                        <div class=" col-sm-3">
+                            <label>Encuesta</label>
+                            <input style="width: 50%">
+                        </div>
+                        <div class=" col-sm-3">
+                            <label style="font-size: 10px;line-height:8px">Tamaño de<br>muestra</label>
+                            <input " style=" width: 50%">
+                        </div>
+                    </div>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <div align="right" >
+                        <button style="border-radius: 5px;background-color:white;border-color:white;color:#DE8343;font-size:14px">Regresar</button>
+                        <button style="border-radius: 5px;background-color:white;border-color:white;color:#9FCE63;font-size:14px">Crear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const all = document.getElementById('all');
+
+        all.addEventListener('click', toggle);
+
+
+        function toggle() {
+            const isChecked = all.checked;
+            Array.from(document.f1.getElementsByTagName('input')).forEach(element => {
+                element.checked = isChecked;
+            });
+        }
+
+
+        Array.from(document.f1.querySelectorAll('input:not(#all)')).forEach(element => {
+            element.addEventListener('click', uncheckAll);
+        });
+
+        function uncheckAll() {
+            all.checked = false
+        }
+    </script>
+</body>
+
+</html>
